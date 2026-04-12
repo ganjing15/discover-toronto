@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Toronto — An Illustrated Guide | 发现多伦多</title>
+  <meta name="description" content="An illustrated guide to Toronto's 19 best places to visit. 多伦多19个最佳景点图解指南。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23C45D3E'/><line x1='50' y1='8' x2='50' y2='14' stroke='%23E06B47' stroke-width='2'/><line x1='50' y1='14' x2='50' y2='38' stroke='%23F7F0E3' stroke-width='2.5'/><ellipse cx='50' cy='40' rx='11' ry='5' fill='%23F7F0E3'/><ellipse cx='50' cy='38' rx='9' ry='3' fill='%23EDE3D0'/><ellipse cx='50' cy='42' rx='10' ry='2.5' fill='%23EDE3D0'/><path d='M46,44 L42,90 L58,90 L54,44' fill='%23F7F0E3'/><path d='M47,44 L43.5,90 L56.5,90 L53,44' fill='%23EDE3D0' opacity='0.4'/><rect x='42' y='68' width='16' height='3' rx='1' fill='%23C45D3E' opacity='0.2'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqaE=" crossorigin=""></script>
+</head>
+<body>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <p class="hero-eyebrow">~ An Illustrated Guide · 图解旅行指南 ~</p>
+    <h1>Discover<br><em>Toronto</em></h1>
+    <p class="hero-description-zh">发现多伦多</p>
+    <p class="hero-description">Nineteen wonderful places — waterfront parks, garden/zoo/farm, museums/gallery, towering bluffs, Gothic castle, grand railway station, iconic tower, historic theatre, luxury waterfront residence, and national historic sites</p>
+    <p class="hero-description hero-description--zh">十九个精彩景点——湖滨公园、花园/动物园/农场、博物馆/美术馆、壮阔悬崖、哥特城堡、宏伟车站、国家电视塔、历史剧院、豪华湖滨公寓，以及国家历史遗址</p>
+    <p class="hero-cta">&#8595; click any pin on the map · 点击地图上的图钉 &#8595;</p>
+    <div class="divider">
+      <svg viewBox="0 0 24 24"><path d="M12 2C9 7 4 9 4 14c0 4.4 3.6 8 8 8s8-3.6 8-8c0-5-5-7-8-12z"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== Interactive SVG Map ===== -->
+  <section class="map-section">
+    <div class="map-frame">
+      <svg id="torontoMap" viewBox="0 0 1200 780" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="water" width="80" height="16" patternUnits="userSpaceOnUse">
+            <path d="M0 8 Q20 2 40 8 Q60 14 80 8" fill="none" stroke="#6BAACC" stroke-width="0.8" opacity="0.4"/>
+          </pattern>
+          <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="8" cy="8" r="0.6" fill="#2C2416" opacity="0.04"/>
+          </pattern>
+        </defs>
+
+        <!-- LAKE ONTARIO -->
+        <path d="M0 520 C80 510,200 495,350 490 C450 485,520 478,600 480 C700 483,800 478,900 482 C1000 485,1100 490,1200 500 L1200 780 L0 780Z" fill="#9DC8DE"/>
+        <path d="M0 520 C80 510,200 495,350 490 C450 485,520 478,600 480 C700 483,800 478,900 482 C1000 485,1100 490,1200 500 L1200 780 L0 780Z" fill="url(#water)"/>
+
+        <!-- Wave lines -->
+        <g opacity="0.25">
+          <path d="M0 555 Q80 545,160 555 Q240 565,320 555 Q400 545,480 555 Q560 565,640 555 Q720 545,800 555 Q880 565,960 555 Q1040 545,1120 555 Q1200 565,1280 555" fill="none" stroke="#3D7A9E" stroke-width="1.2">
+            <animateTransform attributeName="transform" type="translate" values="0,0;-80,0;0,0" dur="8s" repeatCount="indefinite"/>
+          </path>
+          <path d="M0 600 Q80 590,160 600 Q240 610,320 600 Q400 590,480 600 Q560 610,640 600 Q720 590,800 600 Q880 610,960 600 Q1040 590,1120 600 Q1200 610,1280 600" fill="none" stroke="#3D7A9E" stroke-width="0.8">
+            <animateTransform attributeName="transform" type="translate" values="0,0;-60,0;0,0" dur="10s" repeatCount="indefinite"/>
+          </path>
+        </g>
+
+        <!-- LAND -->
+        <path d="M0 0 L1200 0 L1200 500 C1100 490,1000 485,900 482 C800 478,700 483,600 480 C520 478,450 485,350 490 C200 495,80 510,0 520Z" fill="#EDE3D0"/>
+        <path d="M0 0 L1200 0 L1200 500 C1100 490,1000 485,900 482 C800 478,700 483,600 480 C520 478,450 485,350 490 C200 495,80 510,0 520Z" fill="url(#dots)"/>
+
+        <!-- TORONTO ISLANDS -->
+        <g opacity="0.6">
+          <ellipse cx="600" cy="530" rx="40" ry="10" fill="#8BB799" transform="rotate(-5,600,530)"/>
+          <ellipse cx="540" cy="535" rx="50" ry="12" fill="#8BB799" transform="rotate(3,540,535)"/>
+          <ellipse cx="480" cy="540" rx="30" ry="9" fill="#a3c7a8" transform="rotate(8,480,540)"/>
+          <circle cx="510" cy="532" r="5" fill="#4A7C59" opacity="0.5"/>
+          <circle cx="545" cy="530" r="6" fill="#4A7C59" opacity="0.4"/>
+          <circle cx="575" cy="528" r="4" fill="#4A7C59" opacity="0.5"/>
+        </g>
+
+        <!-- STREETS -->
+        <line x1="565" y1="60" x2="565" y2="478" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="6,5" opacity="0.1"/>
+        <text x="572" y="180" font-family="Caveat,cursive" font-size="10" fill="#2C2416" opacity="0.15" transform="rotate(-90,572,180)">Yonge Street</text>
+        <line x1="80" y1="310" x2="1050" y2="310" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="6,5" opacity="0.08"/>
+        <text x="750" y="304" font-family="Caveat,cursive" font-size="10" fill="#2C2416" opacity="0.13">Bloor Street</text>
+        <path d="M50 475 C200 462,350 458,500 456 C650 454,800 456,950 462 C1050 466,1150 472,1200 478" fill="none" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="5,5" opacity="0.07"/>
+
+
+        <!-- DECORATIVE TREES -->
+        <g opacity="0.18">
+          <circle cx="120" cy="180" r="7" fill="#4A7C59"/><rect x="118.5" y="187" width="3" height="5" fill="#8B6B4A"/>
+          <circle cx="170" cy="350" r="5" fill="#4A7C59"/><rect x="168.5" y="355" width="3" height="4" fill="#8B6B4A"/>
+          <circle cx="320" cy="200" r="6" fill="#4A7C59"/><rect x="318.5" y="206" width="3" height="5" fill="#8B6B4A"/>
+          <circle cx="400" cy="280" r="5" fill="#4A7C59"/><rect x="398.5" y="285" width="3" height="4" fill="#8B6B4A"/>
+          <circle cx="700" cy="240" r="6" fill="#4A7C59"/><rect x="698.5" y="246" width="3" height="5" fill="#8B6B4A"/>
+          <circle cx="820" cy="190" r="5" fill="#4A7C59"/><rect x="818.5" y="195" width="3" height="4" fill="#8B6B4A"/>
+          <circle cx="960" cy="280" r="5" fill="#4A7C59"/><rect x="958.5" y="285" width="3" height="4" fill="#8B6B4A"/>
+          <circle cx="1080" cy="350" r="6" fill="#4A7C59"/><rect x="1078.5" y="356" width="3" height="5" fill="#8B6B4A"/>
+        </g>
+
+        <!-- DOTTED TRAILS -->
+        <path d="M210 355 C300 300,420 280,530 275" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+        <path d="M530 275 C570 310,610 340,640 340" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+        <path d="M640 340 L720 320" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+        <path d="M720 320 C820 360,920 400,1010 430" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+        <path d="M430 453 L520 440" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+        <path d="M520 440 L540 520" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
+
+        <!-- COMPASS -->
+        <g transform="translate(1110,90)" opacity="0.25">
+          <circle r="30" fill="none" stroke="#2C2416" stroke-width="0.8"/>
+          <circle r="22" fill="none" stroke="#2C2416" stroke-width="0.5"/>
+          <line x1="0" y1="-28" x2="0" y2="28" stroke="#2C2416" stroke-width="0.6"/>
+          <line x1="-28" y1="0" x2="28" y2="0" stroke="#2C2416" stroke-width="0.6"/>
+          <polygon points="0,-26 -3,-14 3,-14" fill="#C45D3E"/>
+          <text x="-3" y="-33" font-family="Caveat,cursive" font-size="13" fill="#2C2416" font-weight="600">N</text>
+          <text x="-4" y="-33" font-family="sans-serif" font-size="8" fill="#2C2416" dy="10">北</text>
+        </g>
+
+        <!-- MAP TITLE -->
+        <text x="65" y="65" font-family="Instrument Serif,serif" font-size="26" fill="#2C2416" opacity="0.4">Toronto · 多伦多</text>
+        <text x="65" y="85" font-family="Caveat,cursive" font-size="14" fill="#6B5D4D" opacity="0.35">Ontario, Canada · 加拿大安大略省</text>
+        <text x="180" y="680" font-family="Instrument Serif,serif" font-size="28" fill="#3D7A9E" opacity="0.18" letter-spacing="10">LAKE ONTARIO · 安大略湖</text>
+
+
+        <!-- ======= PINS ======= -->
+
+        <!-- 1. High Park Zoo 高公园动物园 -->
+        <!-- High Park Zoo — label RIGHT (isolated in west) -->
+        <g id="pin-high-park-zoo" data-place="high-park-zoo" style="cursor:pointer">
+          <rect x="150" y="285" width="110" height="90" fill="transparent"/>
+          <circle id="ring-high-park-zoo" cx="200" cy="355" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M200,360 C200,360 175,340 175,325 C175,311 186,300 200,300 C214,300 225,311 225,325 C225,340 200,360 200,360Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Tree with paw print -->
+          <circle cx="200" cy="320" r="10" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <line x1="200" y1="330" x2="200" y2="340" stroke="#F7F0E3" stroke-width="1.8"/>
+          <circle cx="197" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/>
+          <circle cx="203" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/>
+          <circle cx="195" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/>
+          <circle cx="205" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/>
+          <ellipse cx="200" cy="325" rx="3" ry="2" fill="#F7F0E3" opacity="0.4"/>
+          <text x="230" y="326" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">High Park Zoo</text>
+          <text x="230" y="341" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">高公园动物园</text>
+        </g>
+
+        <!-- Gardiner Museum — label RIGHT (beside ROM, Gardiner is east) -->
+        <g id="pin-gardiner" data-place="gardiner" style="cursor:pointer">
+          <rect x="558" y="195" width="100" height="90" fill="transparent"/>
+          <circle id="ring-gardiner" cx="608" cy="258" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M608,263 C608,263 583,243 583,228 C583,214 594,203 608,203 C622,203 633,214 633,228 C633,243 608,263 608,263Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Vase with handles -->
+          <path d="M603,236 Q600,230 602,224 L605,218 L611,218 L614,224 Q616,230 613,236Z" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/>
+          <ellipse cx="608" cy="218" rx="4" ry="1.5" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <line x1="603" y1="236" x2="613" y2="236" stroke="#F7F0E3" stroke-width="1.5"/>
+          <path d="M602,223 Q597,226 602,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <path d="M614,223 Q619,226 614,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <text x="638" y="227" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Gardiner Museum</text>
+          <text x="638" y="242" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">加德纳陶瓷博物馆</text>
+        </g>
+
+        <!-- ROM — label LEFT (west of Gardiner) -->
+        <g id="pin-rom" data-place="rom" style="cursor:pointer">
+          <rect x="480" y="205" width="100" height="90" fill="transparent"/>
+          <circle id="ring-rom" cx="530" cy="275" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M530,280 C530,280 505,260 505,245 C505,231 516,220 530,220 C544,220 555,231 555,245 C555,260 530,280 530,280Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <polygon points="530,232 521,247 526,258 534,258 539,247" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <text x="500" y="244" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Royal Ontario Museum</text>
+          <text x="500" y="259" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">皇家安大略博物馆</text>
+        </g>
+
+        <!-- AGO — label LEFT (west of ROM cluster) -->
+        <g id="pin-ago" data-place="ago" style="cursor:pointer">
+          <rect x="418" y="275" width="100" height="90" fill="transparent"/>
+          <circle id="ring-ago" cx="468" cy="338" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M468,343 C468,343 443,323 443,308 C443,294 454,283 468,283 C482,283 493,294 493,308 C493,323 468,343 468,343Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Painting on easel -->
+          <rect x="458" y="301" width="20" height="14" fill="none" stroke="#F7F0E3" stroke-width="1.8" rx="1"/>
+          <path d="M458,311 L463,306 L467,309 L471,304 L478,311" fill="none" stroke="#F7F0E3" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="472" cy="306" r="2" fill="#F7F0E3" opacity="0.3"/>
+          <line x1="462" y1="315" x2="459" y2="322" stroke="#F7F0E3" stroke-width="1.3"/>
+          <line x1="474" y1="315" x2="477" y2="322" stroke="#F7F0E3" stroke-width="1.3"/>
+          <text x="438" y="307" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Art Gallery of Ontario</text>
+          <text x="438" y="322" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">安大略艺术画廊</text>
+        </g>
+
+        <!-- Aga Khan Museum — label RIGHT (isolated northeast) -->
+        <g id="pin-aga-khan" data-place="aga-khan" style="cursor:pointer">
+          <rect x="808" y="108" width="110" height="90" fill="transparent"/>
+          <circle id="ring-aga-khan" cx="865" cy="168" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M865,173 C865,173 840,153 840,138 C840,124 851,113 865,113 C879,113 890,124 890,138 C890,153 865,173 865,173Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Islamic pointed arch with diamond -->
+          <path d="M857,148 L857,136 Q865,126 873,136 L873,148" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="855" y1="148" x2="875" y2="148" stroke="#F7F0E3" stroke-width="1.8"/>
+          <rect x="862" y="136" width="6" height="6" transform="rotate(45 865 139)" fill="none" stroke="#F7F0E3" stroke-width="1.2"/>
+          <text x="895" y="137" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Aga Khan Museum</text>
+          <text x="895" y="152" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">阿迦汗博物馆</text>
+        </g>
+
+        <!-- Allan Gardens — label LEFT (moved east to 700,310) -->
+        <g id="pin-allan-gardens" data-place="allan-gardens" style="cursor:pointer">
+          <rect x="650" y="272" width="100" height="90" fill="transparent"/>
+          <circle id="ring-allan-gardens" cx="700" cy="310" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M700,345 C700,345 675,325 675,310 C675,296 686,285 700,285 C714,285 725,296 725,310 C725,325 700,345 700,345Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Glass dome conservatory -->
+          <path d="M691,320 Q691,302 700,298 Q709,302 709,320" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <line x1="689" y1="320" x2="711" y2="320" stroke="#F7F0E3" stroke-width="1.8"/>
+          <line x1="700" y1="298" x2="700" y2="320" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
+          <path d="M694,320 Q694,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
+          <path d="M706,320 Q706,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
+          <text x="670" y="309" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Allan Gardens</text>
+          <text x="670" y="324" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">艾伦花园</text>
+        </g>
+
+        <!-- Riverdale Farm — label RIGHT (moved east to 790,285) -->
+        <g id="pin-riverdale-farm" data-place="riverdale-farm" style="cursor:pointer">
+          <rect x="740" y="247" width="110" height="90" fill="transparent"/>
+          <circle id="ring-riverdale-farm" cx="790" cy="285" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M790,320 C790,320 765,300 765,285 C765,271 776,260 790,260 C804,260 815,271 815,285 C815,300 790,320 790,320Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Gambrel barn with flag -->
+          <rect x="780" y="283" width="20" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <path d="M778,283 L784,277 L790,272 L796,277 L802,283" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M786,295 Q790,291 794,295" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <line x1="790" y1="272" x2="790" y2="268" stroke="#F7F0E3" stroke-width="1.3"/>
+          <path d="M790,268 L794,269 L790,271" fill="#F7F0E3" opacity="0.7"/>
+          <text x="820" y="284" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Riverdale Farm</text>
+          <text x="820" y="299" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">河谷农场</text>
+        </g>
+
+        <!-- CN Tower — label RIGHT (moved south to 470,405) -->
+        <g id="pin-cn-tower" data-place="cn-tower" style="cursor:pointer">
+          <rect x="420" y="367" width="100" height="90" fill="transparent"/>
+          <circle id="ring-cn-tower" cx="470" cy="405" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M470,440 C470,440 445,420 445,405 C445,391 456,380 470,380 C484,380 495,391 495,405 C495,420 470,440 470,440Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- CN Tower silhouette (matches favicon) -->
+          <line x1="470" y1="393" x2="470" y2="395" stroke="#EDE3D0" stroke-width="1.2"/>
+          <line x1="470" y1="395" x2="470" y2="401" stroke="#F7F0E3" stroke-width="1.5"/>
+          <ellipse cx="470" cy="402.5" rx="6" ry="2.5" fill="#F7F0E3"/>
+          <ellipse cx="470" cy="401.5" rx="5" ry="1.5" fill="#EDE3D0" opacity="0.5"/>
+          <ellipse cx="470" cy="403.5" rx="5.5" ry="1.2" fill="#EDE3D0" opacity="0.4"/>
+          <path d="M468,404.5 L466,415 L474,415 L472,404.5" fill="#F7F0E3"/>
+          <path d="M468.3,404.5 L466.5,415 L473.5,415 L471.7,404.5" fill="#EDE3D0" opacity="0.3"/>
+          <text x="500" y="404" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">CN Tower</text>
+          <text x="500" y="419" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">国家电视塔</text>
+        </g>
+
+        <!-- Concord Canada House — label LEFT (moved west to 375,445) -->
+        <g id="pin-concord" data-place="concord" style="cursor:pointer">
+          <rect x="325" y="407" width="100" height="90" fill="transparent"/>
+          <circle id="ring-concord" cx="375" cy="445" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M375,480 C375,480 350,460 350,445 C350,431 361,420 375,420 C389,420 400,431 400,445 C400,460 375,480 375,480Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Modern tower + pool wave -->
+          <rect x="369" y="436" width="12" height="18" rx="1" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <rect x="372" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
+          <rect x="377" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
+          <rect x="372" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
+          <rect x="377" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
+          <path d="M367,456 Q372,453 375,456 Q378,459 383,456" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <text x="345" y="444" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Concord Canada House</text>
+          <text x="345" y="459" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">协和加拿大公寓</text>
+        </g>
+
+        <!-- Waterfront — label RIGHT (moved east to 590,435) -->
+        <g id="pin-waterfront" data-place="waterfront" style="cursor:pointer">
+          <rect x="540" y="397" width="110" height="90" fill="transparent"/>
+          <circle id="ring-waterfront" cx="590" cy="435" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M590,470 C590,470 565,450 565,435 C565,421 576,410 590,410 C604,410 615,421 615,435 C615,450 590,470 590,470Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Sunset over waves -->
+          <path d="M583,435 A7,7 0 0,1 597,435" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <line x1="590" y1="427" x2="590" y2="431" stroke="#F7F0E3" stroke-width="1.3" opacity="0.5"/>
+          <line x1="585" y1="429" x2="586" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/>
+          <line x1="595" y1="429" x2="594" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/>
+          <line x1="581" y1="435" x2="599" y2="435" stroke="#F7F0E3" stroke-width="1.3"/>
+          <path d="M581,441 Q586,437 590,441 Q594,445 599,441" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <text x="620" y="434" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Waterfront</text>
+          <text x="620" y="449" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">湖滨区</text>
+        </g>
+
+        <!-- Toronto Islands — label BELOW (in lake, plenty of space) -->
+        <g id="pin-toronto-islands" data-place="toronto-islands" style="cursor:pointer">
+          <rect x="497" y="453" width="100" height="105" fill="transparent"/>
+          <circle id="ring-toronto-islands" cx="545" cy="518" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M545,523 C545,523 520,503 520,488 C520,474 531,463 545,463 C559,463 570,474 570,488 C570,503 545,523 545,523Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <polygon points="545,475 545,498 535,498" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="545" y1="475" x2="545" y2="500" stroke="#F7F0E3" stroke-width="1.8"/>
+          <path d="M535,502 Q545,506 555,502" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
+          <text x="545" y="542" text-anchor="middle" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Toronto Islands</text>
+          <text x="545" y="557" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6B5D4D">多伦多群岛</text>
+        </g>
+
+        <!-- Casa Loma — label RIGHT (midtown north, isolated) -->
+        <g id="pin-casa-loma" data-place="casa-loma" style="cursor:pointer">
+          <rect x="328" y="111" width="100" height="90" fill="transparent"/>
+          <circle id="ring-casa-loma" cx="378" cy="161" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M378,196 C378,196 353,176 353,161 C353,147 364,136 378,136 C392,136 403,147 403,161 C403,176 378,196 378,196Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Castle with flag -->
+          <rect x="368" y="159" width="8" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <path d="M368,159 L369,155 L371,159 M373,159 L374,155 L376,159" stroke="#F7F0E3" fill="none" stroke-width="1.3"/>
+          <line x1="372" y1="155" x2="372" y2="150" stroke="#F7F0E3" stroke-width="1.3"/>
+          <path d="M372,150 L377,152 L372,154" fill="#F7F0E3" opacity="0.8"/>
+          <rect x="378" y="162" width="8" height="9" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <path d="M378,162 L379,158 L381,162 M383,162 L384,158 L386,162" stroke="#F7F0E3" fill="none" stroke-width="1.3"/>
+          <line x1="376" y1="167" x2="378" y2="167" stroke="#F7F0E3" stroke-width="1.3"/>
+          <text x="408" y="157" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Casa Loma</text>
+          <text x="408" y="172" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">卡萨罗玛城堡</text>
+        </g>
+
+        <!-- Union Station — label RIGHT (moved south to 550,358) -->
+        <g id="pin-union-station" data-place="union-station" style="cursor:pointer">
+          <rect x="500" y="320" width="110" height="90" fill="transparent"/>
+          <circle id="ring-union-station" cx="550" cy="358" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M550,393 C550,393 525,373 525,358 C525,344 536,333 550,333 C564,333 575,344 575,358 C575,373 550,393 550,393Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Grand arch with clock -->
+          <polygon points="550,347 540,355 560,355" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="550" cy="352" r="2" fill="none" stroke="#F7F0E3" stroke-width="1"/>
+          <line x1="540" y1="355" x2="540" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
+          <line x1="560" y1="355" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
+          <line x1="540" y1="369" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
+          <path d="M546,369 Q550,363 554,369" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <text x="580" y="357" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Union Station</text>
+          <text x="580" y="372" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">联合车站</text>
+        </g>
+
+        <!-- Pearson Airport — label RIGHT (far west edge) -->
+        <g id="pin-pearson" data-place="pearson" style="cursor:pointer">
+          <rect x="18" y="168" width="100" height="90" fill="transparent"/>
+          <circle id="ring-pearson" cx="68" cy="213" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M68,251 C68,251 43,231 43,216 C43,202 54,191 68,191 C82,191 93,202 93,216 C93,231 68,251 68,251Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Top-down airplane -->
+          <line x1="68" y1="204" x2="68" y2="224" stroke="#F7F0E3" stroke-width="2" stroke-linecap="round"/>
+          <path d="M68,210 L56,216 L58,217 L68,213" fill="#F7F0E3" opacity="0.8"/>
+          <path d="M68,210 L80,216 L78,217 L68,213" fill="#F7F0E3" opacity="0.8"/>
+          <path d="M68,220 L63,224 L64,223 L68,221" fill="#F7F0E3" opacity="0.8"/>
+          <path d="M68,220 L73,224 L72,223 L68,221" fill="#F7F0E3" opacity="0.8"/>
+          <circle cx="68" cy="206" r="2" fill="#F7F0E3" opacity="0.4"/>
+          <text x="98" y="212" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Pearson Airport</text>
+          <text x="98" y="227" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">皮尔逊机场</text>
+        </g>
+
+        <!-- Scarborough Bluffs — label LEFT (far right edge of map) -->
+        <g id="pin-scarborough-bluffs" data-place="scarborough-bluffs" style="cursor:pointer">
+          <rect x="955" y="368" width="100" height="90" fill="transparent"/>
+          <circle id="ring-scarborough-bluffs" cx="1010" cy="432" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M1010,437 C1010,437 985,417 985,402 C985,388 996,377 1010,377 C1024,377 1035,388 1035,402 C1035,417 1010,437 1010,437Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <polyline points="998,414 1004,398 1010,408 1016,392 1022,414" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="998" y1="414" x2="1022" y2="414" stroke="#F7F0E3" stroke-width="1.8"/>
+          <text x="980" y="401" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Scarborough Bluffs</text>
+          <text x="980" y="416" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">斯卡伯勒悬崖</text>
+        </g>
+
+        <!-- Fort York National Historic Site — label RIGHT (west of CN Tower) -->
+        <g id="pin-fort-york" data-place="fort-york" style="cursor:pointer">
+          <rect x="355" y="335" width="110" height="90" fill="transparent"/>
+          <circle id="ring-fort-york" cx="405" cy="375" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M405,410 C405,410 380,390 380,375 C380,361 391,350 405,350 C419,350 430,361 430,375 C430,390 405,410 405,410Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Cannon icon -->
+          <rect x="395" y="367" width="15" height="7" rx="2" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
+          <line x1="410" y1="368" x2="416" y2="368" stroke="#F7F0E3" stroke-width="1.5"/>
+          <line x1="410" y1="373" x2="416" y2="373" stroke="#F7F0E3" stroke-width="1.5"/>
+          <circle cx="399" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <circle cx="407" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
+          <text x="435" y="374" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Fort York</text>
+          <text x="435" y="389" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">约克要塞</text>
+        </g>
+
+        <!-- Toronto Railway Museum — label LEFT (south of Union Station, east of CN Tower) -->
+        <g id="pin-railway-museum" data-place="railway-museum" style="cursor:pointer">
+          <rect x="490" y="412" width="100" height="90" fill="transparent"/>
+          <circle id="ring-railway-museum" cx="540" cy="452" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M540,487 C540,487 515,467 515,452 C515,438 526,427 540,427 C554,427 565,438 565,452 C565,467 540,487 540,487Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Train driving wheel with spokes (matches card icon, centered on pin head) -->
+          <circle cx="540" cy="452" r="7" fill="none" stroke="#F7F0E3" stroke-width="1.4"/>
+          <circle cx="540" cy="452" r="1.8" fill="none" stroke="#F7F0E3" stroke-width="1"/>
+          <line x1="540" y1="445" x2="540" y2="459" stroke="#F7F0E3" stroke-width="0.9"/>
+          <line x1="533" y1="452" x2="547" y2="452" stroke="#F7F0E3" stroke-width="0.9"/>
+          <line x1="535" y1="447" x2="545" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/>
+          <line x1="545" y1="447" x2="535" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/>
+          <line x1="535" y1="461" x2="545" y2="461" stroke="#F7F0E3" stroke-width="1.2" stroke-linecap="round"/>
+          <text x="510" y="451" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Railway Museum</text>
+          <text x="510" y="466" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">铁路博物馆</text>
+        </g>
+
+        <!-- Love Park — label RIGHT (eastern waterfront, Waterfront Toronto project) -->
+        <g id="pin-love-park" data-place="love-park" style="cursor:pointer">
+          <rect x="622" y="422" width="110" height="90" fill="transparent"/>
+          <circle id="ring-love-park" cx="672" cy="462" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M672,497 C672,497 647,477 647,462 C647,448 658,437 672,437 C686,437 697,448 697,462 C697,477 672,497 672,497Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Heart with stem + grass (matches card icon, centered on pin head) -->
+          <path d="M672,469 C672,469 664,464 665,458 C666,455 669,455 672,459 C675,455 678,455 679,458 C680,464 672,469 672,469Z" fill="none" stroke="#F7F0E3" stroke-width="1.4" stroke-linejoin="round"/>
+          <line x1="672" y1="469" x2="672" y2="472" stroke="#F7F0E3" stroke-width="1"/>
+          <path d="M669,472 Q672,470 675,472" fill="none" stroke="#F7F0E3" stroke-width="1"/>
+          <text x="702" y="461" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Love Park</text>
+          <text x="702" y="476" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">洛夫公园</text>
+        </g>
+
+        <!-- Elgin & Winter Garden Theatres — label RIGHT (placed east of Union Station cluster) -->
+        <g id="pin-elgin-winter-garden" data-place="elgin-winter-garden" style="cursor:pointer">
+          <rect x="605" y="347" width="130" height="90" fill="transparent"/>
+          <circle id="ring-elgin-winter-garden" cx="655" cy="385" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
+          <path d="M655,420 C655,420 630,400 630,385 C630,371 641,360 655,360 C669,360 680,371 680,385 C680,400 655,420 655,420Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
+          <!-- Outer proscenium arch + floor -->
+          <path d="M646,395 L646,381 Q646,374 655,374 Q664,374 664,381 L664,395" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="644" y1="395" x2="666" y2="395" stroke="#F7F0E3" stroke-width="1.8"/>
+          <!-- Inner arch -->
+          <path d="M649,395 L649,382 Q649,377 655,377 Q661,377 661,382 L661,395" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
+          <!-- Left curtain -->
+          <path d="M646,381 Q644,386 646,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/>
+          <!-- Right curtain -->
+          <path d="M664,381 Q666,386 664,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/>
+          <!-- Spotlight circle -->
+          <circle cx="655" cy="386" r="2" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/>
+          <text x="685" y="384" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Elgin &amp; Winter Garden</text>
+          <text x="685" y="399" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">双层历史剧院</text>
+        </g>
+
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== Slide-in Panel ===== -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="panel" id="panel">
+    <div class="panel-header">
+      <button class="panel-close" id="panelClose" aria-label="Close">&#xd7;</button>
+    </div>
+    <div class="panel-content" id="panelContent"></div>
+  </aside>
+
+  <!-- ===== Gallery ===== -->
+  <section class="gallery">
+    <h2 class="gallery-title">All Sixteen Places <span class="zh-title">十六个精彩景点</span></h2>
+    <p class="gallery-sub">click any card to explore · 点击卡片查看详情</p>
+    <div class="gallery-grid">
+      <div class="g-card" data-place="toronto-islands">
+        <span class="g-card-tag paid">$9 ferry · 轮渡</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><polygon points="24,6 24,36 10,36" stroke="#3D7A9E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="24" y1="6" x2="24" y2="40" stroke="#3D7A9E" stroke-width="2.5"/><path d="M8,41 Q24,47 40,41" stroke="#3D7A9E" fill="none" stroke-width="2.5"/></svg></div>
+        <h3>Toronto Islands <span class="zh">多伦多群岛</span></h3>
+        <p>6–8 hrs · Best in summer & fall<br>6–8小时 · 夏秋最佳</p>
+      </div>
+      <div class="g-card" data-place="allan-gardens">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M8,38 Q8,12 24,8 Q40,12 40,38" stroke="#4A7C59" fill="none" stroke-width="2.5"/><line x1="6" y1="38" x2="42" y2="38" stroke="#4A7C59" stroke-width="2.5"/><line x1="24" y1="8" x2="24" y2="38" stroke="#4A7C59" stroke-width="1.5" opacity="0.3"/><path d="M14,38 Q14,18 24,12" stroke="#4A7C59" fill="none" stroke-width="1.5" opacity="0.3"/><path d="M34,38 Q34,18 24,12" stroke="#4A7C59" fill="none" stroke-width="1.5" opacity="0.3"/><path d="M24,30 Q18,24 24,18 Q30,24 24,30Z" fill="#4A7C59" opacity="0.2" stroke="#4A7C59" stroke-width="1.5"/><line x1="24" y1="18" x2="24" y2="30" stroke="#4A7C59" stroke-width="1.5" opacity="0.5"/></svg></div>
+        <h3>Allan Gardens <span class="zh">艾伦花园</span></h3>
+        <p>1–2 hrs · Open year-round<br>1–2小时 · 全年开放</p>
+      </div>
+      <div class="g-card" data-place="riverdale-farm">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="8" y="22" width="32" height="20" stroke="#C45D3E" fill="none" stroke-width="2.5"/><path d="M6,22 L14,14 L24,8 L34,14 L42,22" stroke="#C45D3E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><path d="M18,42 L18,32 Q24,28 30,32 L30,42" stroke="#C45D3E" fill="none" stroke-width="2"/><line x1="18" y1="32" x2="30" y2="42" stroke="#C45D3E" stroke-width="1.5" opacity="0.3"/><line x1="30" y1="32" x2="18" y2="42" stroke="#C45D3E" stroke-width="1.5" opacity="0.3"/><path d="M24,8 L24,4" stroke="#C45D3E" fill="none" stroke-width="2"/><path d="M24,4 L28,5 L24,7" fill="#C45D3E" opacity="0.4"/></svg></div>
+        <h3>Riverdale Farm <span class="zh">河谷农场</span></h3>
+        <p>1–2 hrs · Best in spring & summer<br>1–2小时 · 春夏最佳</p>
+      </div>
+      <div class="g-card" data-place="scarborough-bluffs">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><polyline points="6,38 14,16 22,28 30,10 38,24 44,38" stroke="#C9A84C" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="6" y1="38" x2="44" y2="38" stroke="#C9A84C" stroke-width="2.5"/></svg></div>
+        <h3>Scarborough Bluffs <span class="zh">斯卡伯勒悬崖</span></h3>
+        <p>2–4 hrs · Best in summer & fall<br>2–4小时 · 夏秋最佳</p>
+      </div>
+      <div class="g-card" data-place="rom">
+        <span class="g-card-tag paid">~$26–30</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><polygon points="24,4 10,24 16,44 32,44 38,24" stroke="#C45D3E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="24" y1="4" x2="24" y2="44" stroke="#C45D3E" stroke-width="1.5" opacity="0.4"/></svg></div>
+        <h3>Royal Ontario Museum <span class="zh">皇家安大略博物馆</span></h3>
+        <p>3–5 hrs · Wed eve free<br>3–5小时 · 周三晚免费</p>
+      </div>
+      <div class="g-card" data-place="waterfront">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M12,24 A12,12 0 0,1 36,24" stroke="#C9A84C" fill="none" stroke-width="2.5"/><line x1="24" y1="6" x2="24" y2="12" stroke="#C9A84C" stroke-width="2" opacity="0.5"/><line x1="14" y1="10" x2="17" y2="15" stroke="#C9A84C" stroke-width="2" opacity="0.4"/><line x1="34" y1="10" x2="31" y2="15" stroke="#C9A84C" stroke-width="2" opacity="0.4"/><line x1="4" y1="24" x2="44" y2="24" stroke="#3D7A9E" stroke-width="2"/><path d="M4,32 Q12,26 20,32 Q28,38 36,32 Q40,29 44,32" stroke="#3D7A9E" fill="none" stroke-width="2.5"/><path d="M6,40 Q14,34 22,40 Q30,46 38,40" stroke="#3D7A9E" fill="none" stroke-width="1.5" opacity="0.4"/></svg></div>
+        <h3>Lake Ontario Waterfront <span class="zh">安大略湖滨区</span></h3>
+        <p>2–4 hrs · Stunning sunsets<br>2–4小时 · 日落绝景</p>
+      </div>
+      <div class="g-card" data-place="elgin-winter-garden">
+        <span class="g-card-tag paid">Tickets vary · 票价不等</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M8,42 L8,16 Q8,6 24,6 Q40,6 40,16 L40,42" stroke="#C9A84C" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="6" y1="42" x2="42" y2="42" stroke="#C9A84C" stroke-width="2.5"/><path d="M14,42 L14,20 Q14,12 24,12 Q34,12 34,20 L34,42" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.4"/><path d="M8,16 Q11,26 8,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><path d="M40,16 Q37,26 40,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><circle cx="24" cy="26" r="4" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/></svg></div>
+        <h3>Elgin &amp; Winter Garden Theatres <span class="zh">双层历史剧院</span></h3>
+        <p>2–3 hrs · World's last Edwardian double theatre<br>2–3小时 · 世界最后双层爱德华剧院</p>
+      </div>
+      <div class="g-card" data-place="ago">
+        <span class="g-card-tag paid">~$28</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="28" stroke="#C45D3E" fill="none" stroke-width="2.5" rx="1"/><rect x="10" y="10" width="28" height="20" stroke="#C45D3E" fill="none" stroke-width="1" opacity="0.3"/><path d="M10,26 Q18,18 26,22 Q34,14 38,20" stroke="#C45D3E" fill="none" stroke-width="2" stroke-linecap="round"/><circle cx="32" cy="16" r="3" fill="#C45D3E" opacity="0.25"/><line x1="14" y1="34" x2="8" y2="46" stroke="#C45D3E" stroke-width="2"/><line x1="34" y1="34" x2="40" y2="46" stroke="#C45D3E" stroke-width="2"/><line x1="24" y1="34" x2="24" y2="44" stroke="#C45D3E" stroke-width="2"/></svg></div>
+        <h3>Art Gallery of Ontario <span class="zh">安大略艺术画廊</span></h3>
+        <p>2–4 hrs · Wed eve free<br>2–4小时 · 周三晚免费</p>
+      </div>
+      <div class="g-card" data-place="gardiner">
+        <span class="g-card-tag paid">~$15</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M16,40 Q12,32 14,24 L18,16 L30,16 L34,24 Q36,32 32,40Z" stroke="#C9A84C" fill="none" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="24" cy="16" rx="6" ry="2.5" stroke="#C9A84C" fill="none" stroke-width="2"/><line x1="16" y1="40" x2="32" y2="40" stroke="#C9A84C" stroke-width="2.5"/><path d="M14,22 Q8,26 14,30" stroke="#C9A84C" fill="none" stroke-width="2"/><path d="M34,22 Q40,26 34,30" stroke="#C9A84C" fill="none" stroke-width="2"/><path d="M16,30 Q20,26 24,30 Q28,34 32,30" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.4"/></svg></div>
+        <h3>Gardiner Museum <span class="zh">加德纳陶瓷博物馆</span></h3>
+        <p>1–2 hrs · Wed eve free<br>1–2小时 · 周三晚免费</p>
+      </div>
+      <div class="g-card" data-place="aga-khan">
+        <span class="g-card-tag paid">~$20</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M10,42 L10,20 Q24,2 38,20 L38,42" stroke="#4A7C59" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="8" y1="42" x2="40" y2="42" stroke="#4A7C59" stroke-width="2.5"/><path d="M16,42 L16,24 Q24,10 32,24 L32,42" stroke="#4A7C59" fill="none" stroke-width="1.5" opacity="0.3"/><rect x="20" y="22" width="8" height="8" transform="rotate(45 24 26)" stroke="#4A7C59" fill="none" stroke-width="1.5"/></svg></div>
+        <h3>Aga Khan Museum <span class="zh">阿迦汗博物馆</span></h3>
+        <p>2–3 hrs · Wed eve free<br>2–3小时 · 周三晚免费</p>
+      </div>
+      <div class="g-card" data-place="high-park-zoo">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="14" r="12" stroke="#4A7C59" fill="none" stroke-width="2.5"/><line x1="24" y1="26" x2="24" y2="40" stroke="#4A7C59" stroke-width="2.5"/><circle cx="20" cy="10" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="28" cy="10" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="17" cy="16" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="31" cy="16" r="2" fill="#4A7C59" opacity="0.4"/><ellipse cx="24" cy="18" rx="4" ry="3" fill="#4A7C59" opacity="0.3"/><path d="M14,40 Q24,44 34,40" stroke="#4A7C59" fill="none" stroke-width="2"/></svg></div>
+        <h3>High Park Zoo <span class="zh">高公园动物园</span></h3>
+        <p>2–3 hrs · Best in summer & fall<br>2–3小时 · 夏秋最佳</p>
+      </div>
+      <div class="g-card" data-place="concord">
+        <span class="g-card-tag paid">Residence · 公寓</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="15" y="2" width="18" height="30" rx="1" stroke="#C45D3E" fill="none" stroke-width="2.5"/><rect x="19" y="7" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="25" y="7" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="19" y="14" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="25" y="14" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="19" y="21" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="25" y="21" width="4" height="3" fill="#C45D3E" opacity="0.5"/><rect x="21" y="27" width="6" height="5" fill="#C45D3E" opacity="0.3"/><path d="M6,38 Q14,33 22,38 Q30,43 38,38" stroke="#3D7A9E" fill="none" stroke-width="2.5"/><path d="M10,43 Q18,38 26,43 Q34,48 42,43" stroke="#3D7A9E" fill="none" stroke-width="1.5" opacity="0.4"/></svg></div>
+        <h3>Concord Canada House <span class="zh">协和加拿大公寓</span></h3>
+        <p>Pool · Sauna · Hot tub · Steam<br>泳池 · 桑拿 · 热水浴 · 蒸汽室</p>
+      </div>
+      <div class="g-card" data-place="cn-tower">
+        <span class="g-card-tag paid">~$43 · 需购票</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><line x1="24" y1="2" x2="24" y2="5" stroke="#E06B47" stroke-width="1.5"/><line x1="24" y1="5" x2="24" y2="18" stroke="#C45D3E" stroke-width="2"/><ellipse cx="24" cy="20" rx="10" ry="4.5" fill="#C45D3E" opacity="0.12"/><ellipse cx="24" cy="20" rx="10" ry="4.5" fill="none" stroke="#C45D3E" stroke-width="1.8"/><ellipse cx="24" cy="19" rx="8" ry="2.5" fill="#C45D3E" opacity="0.06" stroke="#C45D3E" stroke-width="1" opacity="0.4"/><ellipse cx="24" cy="21.5" rx="9" ry="2" fill="#C45D3E" opacity="0.06" stroke="#C45D3E" stroke-width="1" opacity="0.35"/><path d="M21,24 L18,46 L30,46 L27,24" fill="#C45D3E" opacity="0.1" stroke="#C45D3E" stroke-width="1.8" stroke-linejoin="round"/><path d="M21.5,24 L19,46 L29,46 L26.5,24" fill="#C45D3E" opacity="0.06"/></svg></div>
+        <h3>CN Tower <span class="zh">国家电视塔</span></h3>
+        <p>1–2 hrs · City landmark<br>1–2小时 · 城市地标</p>
+      </div>
+      <div class="g-card" data-place="casa-loma">
+        <span class="g-card-tag paid">~$30 · 需购票</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="6" y="16" width="12" height="26" stroke="#C9A84C" fill="none" stroke-width="2.5"/><path d="M6,16 L7,11 L9,16 M10,16 L11,11 L13,16 M14,16 L15,11 L18,16" stroke="#C9A84C" fill="none" stroke-width="2"/><line x1="12" y1="11" x2="12" y2="4" stroke="#C9A84C" stroke-width="2"/><path d="M12,4 L20,7 L12,10" fill="#C9A84C" opacity="0.5"/><rect x="30" y="22" width="12" height="20" stroke="#C9A84C" fill="none" stroke-width="2.5"/><path d="M30,22 L31,17 L33,22 M34,22 L35,17 L37,22 M38,22 L39,17 L42,22" stroke="#C9A84C" fill="none" stroke-width="2"/><rect x="18" y="30" width="12" height="12" stroke="#C9A84C" fill="none" stroke-width="2"/><path d="M20,42 Q24,35 28,42" stroke="#C9A84C" fill="none" stroke-width="2"/></svg></div>
+        <h3>Casa Loma <span class="zh">卡萨罗玛城堡</span></h3>
+        <p>2–3 hrs · Midtown landmark<br>2–3小时 · 中城地标</p>
+      </div>
+      <div class="g-card" data-place="union-station">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><polygon points="24,6 6,20 42,20" stroke="#3D7A9E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><circle cx="24" cy="14" r="3.5" stroke="#3D7A9E" fill="none" stroke-width="1.5"/><line x1="24" y1="12" x2="24" y2="14" stroke="#3D7A9E" stroke-width="1.5"/><line x1="24" y1="14" x2="26" y2="15" stroke="#3D7A9E" stroke-width="1.5"/><line x1="6" y1="20" x2="6" y2="42" stroke="#3D7A9E" stroke-width="2.5"/><line x1="42" y1="20" x2="42" y2="42" stroke="#3D7A9E" stroke-width="2.5"/><line x1="6" y1="42" x2="42" y2="42" stroke="#3D7A9E" stroke-width="2.5"/><path d="M16,42 L16,30 Q24,22 32,30 L32,42" stroke="#3D7A9E" fill="none" stroke-width="2.5"/></svg></div>
+        <h3>Union Station <span class="zh">联合车站</span></h3>
+        <p>30 min–1 hr · Transit hub<br>30分钟–1小时 · 交通枢纽</p>
+      </div>
+      <div class="g-card" data-place="pearson">
+        <span class="g-card-tag">Gateway · 门户</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M24,4 L24,38" stroke="#C45D3E" fill="none" stroke-width="3" stroke-linecap="round"/><path d="M24,16 L6,24 L8,26 L24,20" fill="#C45D3E" opacity="0.15" stroke="#C45D3E" stroke-width="2" stroke-linejoin="round"/><path d="M24,16 L42,24 L40,26 L24,20" fill="#C45D3E" opacity="0.15" stroke="#C45D3E" stroke-width="2" stroke-linejoin="round"/><path d="M24,34 L16,40 L17,38 L24,36" fill="#C45D3E" opacity="0.15" stroke="#C45D3E" stroke-width="1.8" stroke-linejoin="round"/><path d="M24,34 L32,40 L31,38 L24,36" fill="#C45D3E" opacity="0.15" stroke="#C45D3E" stroke-width="1.8" stroke-linejoin="round"/><circle cx="24" cy="6" r="2.5" fill="#C45D3E" opacity="0.25"/></svg></div>
+        <h3>Pearson Airport <span class="zh">皮尔逊机场</span></h3>
+        <p>Intl gateway · UP Express<br>国际门户 · UP快线直达</p>
+      </div>
+      <div class="g-card" data-place="fort-york">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="8" y="20" width="24" height="10" rx="3" stroke="#C9A84C" fill="none" stroke-width="2.5"/><line x1="32" y1="22" x2="40" y2="22" stroke="#C9A84C" stroke-width="2.5"/><line x1="32" y1="29" x2="40" y2="29" stroke="#C9A84C" stroke-width="2.5"/><circle cx="14" cy="33" r="4" stroke="#C9A84C" fill="none" stroke-width="2.5"/><circle cx="24" cy="33" r="4" stroke="#C9A84C" fill="none" stroke-width="2.5"/><line x1="6" y1="40" x2="44" y2="40" stroke="#C9A84C" stroke-width="1.5" opacity="0.4"/></svg></div>
+        <h3>Fort York <span class="zh">约克要塞</span></h3>
+        <p>1–2 hrs · Birthplace of Toronto<br>1–2小时 · 多伦多发祥地</p>
+      </div>
+      <div class="g-card" data-place="railway-museum">
+        <span class="g-card-tag paid">Paid · 需购票</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" stroke="#3D7A9E" fill="none" stroke-width="2.5"/><circle cx="24" cy="24" r="4" stroke="#3D7A9E" fill="none" stroke-width="2"/><line x1="24" y1="8" x2="24" y2="40" stroke="#3D7A9E" stroke-width="1.5"/><line x1="8" y1="24" x2="40" y2="24" stroke="#3D7A9E" stroke-width="1.5"/><line x1="13" y1="13" x2="35" y2="35" stroke="#3D7A9E" stroke-width="1.5" opacity="0.6"/><line x1="35" y1="13" x2="13" y2="35" stroke="#3D7A9E" stroke-width="1.5" opacity="0.6"/><line x1="14" y1="42" x2="34" y2="42" stroke="#3D7A9E" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <h3>Toronto Railway Museum <span class="zh">多伦多铁路博物馆</span></h3>
+        <p>1–2 hrs · Steam locomotives &amp; heritage cars<br>1–2小时 · 蒸汽机车与历史车厢</p>
+      </div>
+      <div class="g-card" data-place="love-park">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M24,40 C24,40 4,27 6,14 C8,5 17,5 24,15 C31,5 40,5 42,14 C44,27 24,40 24,40Z" stroke="#C45D3E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="24" y1="40" x2="24" y2="46" stroke="#4A7C59" stroke-width="2"/><path d="M16,46 Q24,42 32,46" stroke="#4A7C59" fill="none" stroke-width="2"/></svg></div>
+        <h3>Love Park <span class="zh">洛夫公园</span></h3>
+        <p>30 min–1 hr · Neighbourhood gem<br>30分钟–1小时 · 社区绿洲</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,55 L80,55 L80,40 L100,40 L100,30 L108,30 L108,40 L140,40 L140,48 L220,48 L220,32 L238,32 L238,24 L246,24 L246,32 L270,32 L270,42 L340,42 L340,36 L348,36 L348,20 L352,20 L352,10 L354,5 L356,5 L358,10 L362,10 L362,20 L366,20 L366,36 L380,36 L380,42 L440,42 L440,28 L456,28 L456,22 L462,22 L462,28 L480,28 L480,38 L540,38 L540,32 L560,32 L560,38 L620,38 L620,34 L636,34 L636,28 L642,28 L642,34 L660,34 L660,42 L740,42 L740,48 L820,48 L820,38 L840,38 L840,32 L848,32 L848,38 L870,38 L870,50 L940,50 L940,44 L980,44 L980,52 L1060,52 L1060,48 L1100,48 L1100,55 L1160,55 L1160,52 L1200,52 L1200,80Z" fill="#C45D3E" opacity="0.12"/>
+    </svg>
+    <p>Made with <span class="heart">&#9829;</span> for Toronto explorers · 为多伦多旅行者用心制作</p>
+  </footer>
+
+  <!-- ===== JS ===== -->
+  <script>
+    const places = {
+      'concord': {
+        name: 'Concord Canada House',
+        nameZh: '协和加拿大公寓',
+        desc: 'A premier residential tower steps from the CN Tower and Rogers Centre, offering luxury amenities including an indoor swimming pool, hot tub, sauna, and steam room. Ideal for extended stays with world-class waterfront views and a full suite of wellness facilities.',
+        descZh: '紧邻国家电视塔和罗杰斯中心的豪华住宅公寓，提供室内游泳池、热水浴缸、桑拿房和蒸汽室等一流设施。享有无敌湖滨景观，是长期居住的理想之选。',
+        bestTime: 'Year-round — pool & spa available all seasons',
+        bestTimeZh: '全年均可入住，泳池及水疗设施四季开放',
+        duration: 'Short-term & long-term stays available · 可短租或长租',
+        price: 'Varies by unit & season — contact for rates',
+        priceZh: '价格按房型及季节而异，请联系咨询',
+        free: false,
+        amenities: ['Indoor Pool · 室内游泳池', 'Hot Tub · 热水浴缸', 'Sauna · 桑拿房', 'Steam Room · 蒸汽室'],
+        address: '3 Concord Cityplace Way, Toronto, ON',
+        addressZh: '安大略省多伦多市协和城市广场道3号',
+        url: 'https://concordcanadahouse.ca/',
+        map: '3+Concord+Cityplace+Way,Toronto,ON'
+      },
+      'toronto-islands': {
+        name: 'Toronto Islands',
+        nameZh: '多伦多群岛',
+        desc: 'A stunning car-free archipelago just a short ferry ride from downtown. Enjoy sandy beaches, kayaking, picnic areas, and breathtaking skyline views. Centre Island features Centreville Amusement Park for families.',
+        descZh: '距离市中心仅需短暂轮渡的无车群岛，拥有沙滩、皮划艇、野餐区和令人叹为观止的城市天际线。中央岛上的森特维尔游乐园非常适合家庭出游。',
+        bestTime: 'Summer (June–Sept), mornings to avoid ferry crowds',
+        bestTimeZh: '夏季（6月至9月），早晨前往可避开人流',
+        duration: '3–5 hours · 3至5小时',
+        price: 'Ferry: $9.11 adult / $5.86 senior & student / $4.29 child / Free under 2',
+        priceZh: '轮渡：成人 $9.11 / 老人学生 $5.86 / 儿童 $4.29 / 2岁以下免费',
+        free: false,
+        url: 'https://www.toronto.ca/explore-enjoy/parks-recreation/places-spaces/toronto-island-park/',
+        map: 'Toronto+Islands,Toronto,ON'
+      },
+      'allan-gardens': {
+        name: 'Allan Gardens',
+        nameZh: '艾伦花园',
+        desc: 'A stunning Victorian-era conservatory housing six greenhouses with exotic plants from around the world. A hidden gem in downtown Toronto, perfect for a peaceful escape any time of year. Open daily 10 AM – 5 PM.',
+        descZh: '维多利亚时代的温室建筑群，六座温室内种满来自世界各地的奇异植物。多伦多市中心的隐秘宝地，全年均是放松身心的绝佳去处。每日10时至17时开放。',
+        bestTime: 'Year-round, weekday mornings for fewer crowds',
+        bestTimeZh: '全年均可，工作日早晨人少更为舒适',
+        duration: '1–2 hours · 1至2小时',
+        price: 'Free admission · 免费入场',
+        priceZh: '免费入场',
+        free: true,
+        url: 'https://www.toronto.ca/explore-enjoy/parks-recreation/places-spaces/gardens-and-horticulture/conservatories/allan-gardens-conservatory/',
+        map: 'Allan+Gardens,Toronto,ON'
+      },
+      'riverdale-farm': {
+        name: 'Riverdale Farm',
+        nameZh: '河谷农场',
+        desc: 'A charming 7.5-acre working farm in the heart of Cabbagetown. Meet cows, pigs, sheep, goats, and chickens. Year-round programs and seasonal events make this a beloved family destination. Open daily 9 AM – 5 PM.',
+        descZh: '位于卷心菜镇中心的7.5英亩真实农场，可以近距离接触牛、猪、羊、山羊和鸡。全年活动丰富，是深受家庭喜爱的亲子目的地。每日9时至17时开放。',
+        bestTime: 'Spring & Summer, mornings when animals are most active',
+        bestTimeZh: '春夏两季，早晨动物最活跃',
+        duration: '1–2 hours · 1至2小时',
+        price: 'Free admission · 免费入场',
+        priceZh: '免费入场',
+        free: true,
+        url: 'https://riverdalefarmtoronto.ca/',
+        map: 'Riverdale+Farm,Toronto,ON'
+      },
+      'scarborough-bluffs': {
+        name: 'Scarborough Bluffs',
+        nameZh: '斯卡伯勒悬崖',
+        desc: 'Towering 90-metre cliffs stretching 15 km along Lake Ontario\'s shore. Bluffers Park at the base offers a sandy beach, marina, and stunning geological formations that rival any coastal landscape.',
+        descZh: '高达90米的悬崖沿安大略湖岸绵延15公里，是令人震撼的地质奇观。崖脚的布拉弗公园设有沙滩和游艇码头，景色堪比世界任何海岸。',
+        bestTime: 'Summer (June–Sept), golden hour for photography',
+        bestTimeZh: '夏季（6月至9月），黄金时刻拍照最美',
+        duration: '2–4 hours · 2至4小时',
+        price: 'Free (parking fees may apply) · 免费（停车需收费）',
+        priceZh: '免费（停车需收费）',
+        free: true,
+        url: 'https://www.toronto.ca/explore-enjoy/parks-recreation/places-spaces/scarborough-bluffs/',
+        map: 'https://maps.app.goo.gl/FBeAfKgX15CkmwPH9'
+      },
+      'rom': {
+        name: 'Royal Ontario Museum',
+        nameZh: '皇家安大略博物馆',
+        desc: 'Canada\'s largest museum of world cultures and natural history, featuring over 13 million artworks, cultural objects, and natural history specimens. The iconic Michael Lee-Chin Crystal entrance is an architectural marvel.',
+        descZh: '加拿大最大的世界文化与自然历史博物馆，馆藏超过1300万件艺术品、文物和自然标本。标志性的李锦基水晶大厅是令人叹为观止的建筑杰作。',
+        bestTime: 'Year-round, weekday mornings for fewer crowds',
+        bestTimeZh: '全年均可，工作日早晨人少最为理想',
+        duration: '3–5 hours · 3至5小时',
+        price: '~$26–30 adult (dynamic pricing, discounts online)',
+        priceZh: '成人约26至30加元（动态定价，网上购票有优惠）',
+        free: false,
+        freeWedEve: true,
+        url: 'https://www.rom.on.ca/',
+        map: 'Royal+Ontario+Museum,Toronto,ON'
+      },
+      'ago': {
+        name: 'Art Gallery of Ontario',
+        nameZh: '安大略艺术画廊',
+        desc: 'One of the largest art museums in North America, with a collection of over 120,000 works spanning 6,000 years of art history. The stunning Frank Gehry–designed building is a landmark of Toronto\'s cultural district.',
+        descZh: '北美最大的艺术博物馆之一，馆藏超过12万件跨越6000年艺术史的作品。由弗兰克·盖里设计的华丽建筑是多伦多文化区的地标。',
+        bestTime: 'Year-round; Wednesday evenings free & less crowded',
+        bestTimeZh: '全年均可；周三晚间免费且人少',
+        duration: '2–4 hours · 2至4小时',
+        price: '~$28 adult; Free every Wednesday 6–9 PM',
+        priceZh: '成人约28加元；每周三18时至21时免费入场',
+        free: false,
+        freeWedEve: true,
+        url: 'https://ago.ca/',
+        map: 'Art+Gallery+of+Ontario,Toronto,ON'
+      },
+      'gardiner': {
+        name: 'Gardiner Museum',
+        nameZh: '加德纳陶瓷博物馆',
+        desc: 'The only museum in North America dedicated exclusively to ceramic art, housing over 4,000 works from ancient American, Asian, and European traditions. Located directly across from the ROM at Queen\'s Park.',
+        descZh: '北美唯一一家专注于陶瓷艺术的博物馆，馆藏超过4000件来自古代美洲、亚洲及欧洲传统的作品。位于皇后公园，与ROM隔街相望。',
+        bestTime: 'Year-round; Wednesday evenings free & quieter',
+        bestTimeZh: '全年均可；周三晚间免费且较为安静',
+        duration: '1–2 hours · 1至2小时',
+        price: '~$15 adult; Free every Wednesday 4–9 PM',
+        priceZh: '成人约15加元；每周三16时至21时免费入场',
+        free: false,
+        freeWedEve: true,
+        url: 'https://www.gardinermuseum.on.ca/',
+        map: 'Gardiner+Museum,Toronto,ON'
+      },
+      'aga-khan': {
+        name: 'Aga Khan Museum',
+        nameZh: '阿迦汗博物馆',
+        desc: 'A stunning museum dedicated to the arts and cultures of Muslim civilizations, set in a beautifully landscaped park in North York. Its collection spans 14 centuries of Islamic art, and the architecture itself is extraordinary.',
+        descZh: '坐落于北约克精致园林公园内，专注于伊斯兰文明艺术与文化的精彩博物馆，馆藏跨越14个世纪的伊斯兰艺术珍品，建筑本身亦是一大奇观。',
+        bestTime: 'Year-round; Wednesday evenings free & peaceful',
+        bestTimeZh: '全年均可；周三晚间免费且幽静',
+        duration: '2–3 hours · 2至3小时',
+        price: '~$20 adult; Free every Wednesday 4–8 PM',
+        priceZh: '成人约20加元；每周三16时至20时免费入场',
+        free: false,
+        freeWedEve: true,
+        url: 'https://www.agakhanmuseum.org/',
+        map: 'Aga+Khan+Museum,Toronto,ON'
+      },
+      'high-park-zoo': {
+        name: 'High Park Zoo',
+        nameZh: '高公园动物园',
+        desc: 'A free zoo nestled within Toronto\'s beloved 161-hectare High Park. Home to bison, capybaras, llamas, deer, peacocks, and more. Pair it with High Park\'s trails, playgrounds, and famous cherry blossoms in spring.',
+        descZh: '坐落在多伦多深受喜爱的161公顷高公园内的免费动物园，栖息着野牛、水豚、羊驼、鹿、孔雀等动物。春天别忘了欣赏高公园著名的樱花美景。',
+        bestTime: 'Spring (cherry blossom season) & Summer, mornings',
+        bestTimeZh: '春季（樱花季节）及夏季，早晨前往',
+        duration: '2–3 hours · 2至3小时',
+        price: 'Free admission · 免费入场',
+        priceZh: '免费入场',
+        free: true,
+        url: 'https://www.highparkzoo.ca/',
+        map: 'High+Park+Zoo,Toronto,ON'
+      },
+      'cn-tower': {
+        name: 'CN Tower',
+        nameZh: '国家电视塔',
+        desc: 'Toronto\'s most iconic landmark and one of the tallest free-standing structures in the world at 553 metres. The main observation deck (346m) offers stunning 360° views, the Glass Floor will test your nerves, and EdgeWalk lets thrill-seekers walk hands-free around the outside of the tower.',
+        descZh: '多伦多最具标志性的地标，高553米，是世界上最高的独立式建筑之一。主观景台（346米）可欣赏360°壮丽城市全景，玻璃地板挑战你的胆量，边缘行走体验让你在塔外无护栏漫步。',
+        bestTime: 'Year-round; sunset for golden views, clear days for best visibility',
+        bestTimeZh: '全年均可；日落时分景色最美，晴天能见度最佳',
+        duration: '1–2 hours · 1至2小时',
+        price: '~$43 adult (observation deck) / $58 with SkyPod / EdgeWalk from $195',
+        priceZh: '成人约43加元（观景台）/ 含天空之盖58加元 / 边缘行走195加元起',
+        free: false,
+        address: '290 Bremner Blvd, Toronto, ON M5V 3L9',
+        addressZh: '安大略省多伦多市布莱姆纳大道290号',
+        url: 'https://www.cntower.ca/',
+        map: 'CN+Tower,Toronto,ON'
+      },
+      'casa-loma': {
+        name: 'Casa Loma',
+        nameZh: '卡萨罗玛城堡',
+        desc: 'A breathtaking 98-room Gothic Revival castle perched on a hill in midtown Toronto. Built between 1911–1914 by Sir Henry Pellatt, it features soaring towers, secret passageways, a carriage house, and manicured gardens with sweeping city views.',
+        descZh: '多伦多中城山丘上的哥特式复兴风格城堡，共有98个房间，由亨利·佩拉特爵士于1911至1914年间建造，拥有高耸的塔楼、神秘的密道、马车房和精致花园，可俯瞰壮丽城市全景。',
+        bestTime: 'Year-round; gardens at their finest June–Sept',
+        bestTimeZh: '全年均可；花园6月至9月最为美丽',
+        duration: '2–3 hours · 2至3小时',
+        price: '~$30 adult / $20 youth (13–17) / Free under 4',
+        priceZh: '成人约30加元 / 青少年（13-17岁）约20加元 / 4岁以下免费',
+        free: false,
+        address: '1 Austin Terrace, Toronto, ON M5R 1X8',
+        addressZh: '安大略省多伦多市奥斯汀台1号',
+        url: 'https://casaloma.ca/',
+        map: 'Casa+Loma,Toronto,ON'
+      },
+      'union-station': {
+        name: 'Union Station',
+        nameZh: '联合车站',
+        desc: 'Toronto\'s grand Beaux-Arts railway station, opened in 1927 and a National Historic Site. The busiest transit hub in Canada, connecting GO Transit, TTC subway, VIA Rail, and the UP Express to Pearson Airport. The soaring Great Hall with its 27-metre vaulted ceiling is unmissable.',
+        descZh: '多伦多宏伟的美术风格火车站，建于1927年，已被列为国家历史遗址。这里是加拿大最繁忙的交通枢纽，连接GO通勤列车、市地铁、VIA国铁及前往皮尔逊机场的UP快线。大厅27米高的拱形穹顶令人叹为观止。',
+        bestTime: 'Year-round; early morning or evening for the best light in the Great Hall',
+        bestTimeZh: '全年均可；清晨或傍晚大厅光线最为迷人',
+        duration: '30 min–1 hour · 30分钟至1小时',
+        price: 'Free to enter · 免费参观',
+        priceZh: '免费参观',
+        free: true,
+        address: '65 Front St W, Toronto, ON M5J 1E6',
+        addressZh: '安大略省多伦多市西前街65号',
+        url: 'https://www.torontounion.ca/',
+        map: 'https://maps.app.goo.gl/ifGvJXF1Yktf7nk96'
+      },
+      'pearson': {
+        name: 'Pearson International Airport',
+        nameZh: '皮尔逊国际机场',
+        desc: 'Canada\'s largest and busiest airport, handling over 50 million passengers a year across two terminals. World-class dining, shopping, and lounges throughout. Reach downtown Toronto in just 25 minutes via the UP Express train from Terminal 1.',
+        descZh: '加拿大最大、最繁忙的国际机场，两座航站楼年旅客吞吐量超过5000万人次，汇聚世界级餐饮与购物。从T1航站楼乘UP快线仅需25分钟即可抵达多伦多市区。',
+        bestTime: 'Arrive 3 hrs before international flights; early morning has shorter queues',
+        bestTimeZh: '国际航班请提前3小时抵达；清晨安检队伍较短',
+        duration: 'Allow 2–3 hrs minimum for international departures · 国际出发请留足2至3小时',
+        price: 'UP Express: $12.35 adult (downtown ↔ airport)',
+        priceZh: 'UP快线：成人单程 $12.35（市区↔机场）',
+        free: true,
+        address: '6301 Silver Dart Drive, Mississauga, ON L5P 1B2',
+        addressZh: '安大略省米西索加市银镖道6301号',
+        url: 'https://www.torontopearson.com/',
+        map: 'Toronto+Pearson+International+Airport'
+      },
+      'elgin-winter-garden': {
+        name: 'Elgin & Winter Garden Theatres',
+        nameZh: '爱尔金和冬日花园剧院',
+        desc: 'A National Historic Site and the last operating Edwardian stacked double theatre in the world. The ornate Elgin Theatre on the ground floor and the enchanting Winter Garden Theatre above — with its magical ceiling of preserved beech boughs and hanging lanterns — are two of Toronto\'s most breathtaking performance venues. Guided heritage tours are available on select weekends.',
+        descZh: '加拿大国家历史遗址，世界上最后一座仍在运营的爱德华时代叠层双层剧院。底层华丽的爱尔金剧院与楼上迷人的冬日花园剧院（以保存完好的山毛榉枝桠和悬挂灯笼装饰天花板著称）是多伦多最令人叹为观止的演出场所。部分周末提供遗产导览。',
+        bestTime: 'Year-round for performances; heritage tours on select Saturdays',
+        bestTimeZh: '全年均有演出；部分周六提供遗产建筑导览',
+        duration: '2–3 hrs for a show; 90 min guided tour · 演出约2-3小时；导览参观90分钟',
+        price: 'Show tickets vary; Guided Tour $20 per person (all ages, advance booking required)',
+        priceZh: '演出票价不等；导览参观每人20加元（所有年龄，须提前预订）',
+        free: false,
+        address: '189 Yonge St, Toronto, ON M5B 1M4',
+        addressZh: '安大略省多伦多市扬街189号',
+        url: 'https://www.heritagetrust.on.ca/ewg',
+        map: 'Elgin+and+Winter+Garden+Theatre+Centre,Toronto,ON'
+      },
+      'waterfront': {
+        name: 'Lake Ontario Waterfront',
+        nameZh: '安大略湖滨区',
+        desc: 'Toronto\'s revitalized waterfront stretches from the Humber Bay Arch Bridge to the Beaches. Walk the Harbourfront Centre boardwalk, visit the Power Plant Gallery, or relax at Sugar Beach and HTO Park.',
+        descZh: '多伦多焕然一新的湖滨区从亨伯湾拱桥一直延伸至海滩区，沿途可漫步港湾中心木栈道，参观发电厂艺术画廊，或在糖沙滩和HTO公园悠闲放松。',
+        bestTime: 'Summer for full experience, sunset for best views',
+        bestTimeZh: '夏季体验最佳，日落时分景色最美',
+        duration: '2–4 hours · 2至4小时',
+        price: 'Free · 免费',
+        priceZh: '免费',
+        free: true,
+        url: 'https://www.waterfrontoronto.ca/',
+        map: 'Toronto+Harbourfront,Toronto,ON'
+      },
+      'fort-york': {
+        name: 'Fort York National Historic Site',
+        nameZh: '约克要塞国家历史遗址',
+        desc: 'Canada\'s most intact urban early 19th-century fortification and the birthplace of modern Toronto. Fort York preserves original blockhouses, barracks, and a magazine from the War of 1812. Guided tours and period demonstrations bring this pivotal chapter of Canadian history vividly to life.',
+        descZh: '加拿大保存最完好的19世纪初城市防御工事，也是现代多伦多的发祥地。约克要塞保存了1812年战争时期的原始碉楼、营房和弹药库，导览参观与历史情景再现生动重现了加拿大历史上这一关键篇章。',
+        bestTime: 'May–October for outdoor interpretation and special events',
+        bestTimeZh: '5月至10月，户外解说与特别活动最为丰富',
+        duration: '1–2 hours · 1至2小时',
+        price: 'Free admission · 免费入场',
+        priceZh: '免费入场',
+        free: true,
+        address: '250 Fort York Blvd, Toronto, ON M5V 3K9',
+        addressZh: '安大略省多伦多市约克要塞大道250号',
+        url: 'https://www.toronto.ca/explore-enjoy/history-art-culture/museums/fort-york-national-historic-site/',
+        map: 'Fort+York+National+Historic+Site,Toronto,ON'
+      },
+      'railway-museum': {
+        name: 'Toronto Railway Museum',
+        nameZh: '多伦多铁路博物馆',
+        desc: 'Set inside the beautifully restored 1929 John Street Roundhouse, steps from the CN Tower, this museum celebrates Toronto\'s rich railway heritage. Explore restored steam locomotives, vintage passenger and freight cars, and displays tracing Canada\'s rail history. Train rides available on weekends.',
+        descZh: '坐落于经精心修复的1929年约翰街圆形机车库内，紧邻国家电视塔。博物馆以加拿大丰富的铁路文化为主题，展出修复完好的蒸汽机车、复古客车与货车，以及还原加拿大铁路发展史的精彩展览。周末提供小火车乘坐体验。',
+        bestTime: 'Year-round; weekends for train rides',
+        bestTimeZh: '全年均可；周末有小火车体验',
+        duration: '1–2 hours · 1至2小时',
+        price: 'Admission fee applies — see website for current rates',
+        priceZh: '须购票入场，详见官网最新票价',
+        free: false,
+        address: '255 Bremner Blvd, Toronto, ON M5V 3M9',
+        addressZh: '安大略省多伦多市布莱姆纳大道255号',
+        url: 'https://torontorailwaymuseum.com/visit/',
+        map: 'Toronto+Railway+Museum,Bremner+Blvd,Toronto,ON'
+      },
+      'love-park': {
+        name: 'Love Park',
+        nameZh: '洛夫公园',
+        desc: 'A Waterfront Toronto park project bringing a new public green space to the central waterfront. Designed as a welcoming destination along the lake, Love Park is part of the ongoing revitalization of Toronto\'s waterfront, offering a beautiful and accessible retreat by the water.',
+        descZh: '湖滨多伦多推进的公园项目，为中央湖滨区带来全新的公共绿地。洛夫公园作为多伦多湖滨持续复兴计划的一部分，打造了一处湖畔宜人的休闲目的地，欢迎市民在湖边悠然享受。',
+        bestTime: 'Spring through fall for outdoor activities along the waterfront',
+        bestTimeZh: '春季至秋季，湖畔户外活动最为宜人',
+        duration: '30 min–1 hour · 30分钟至1小时',
+        price: 'Free · 免费',
+        priceZh: '免费',
+        free: true,
+        url: 'https://www.waterfrontoronto.ca/our-projects/love-park',
+        map: 'Love+Park,Queens+Quay,Toronto,ON'
+      }
+    };
+
+    const overlay = document.getElementById('overlay');
+    const panel = document.getElementById('panel');
+    const panelContent = document.getElementById('panelContent');
+    let activeRing = null;
+    let pulseAnim = null;
+
+    // Hover via JS
+    document.querySelectorAll('#torontoMap [data-place]').forEach(pin => {
+      const pinPath = pin.querySelector('path[d*="C"]');
+      pin.addEventListener('mouseenter', () => {
+        if (pinPath && !pin.classList.contains('active')) pinPath.setAttribute('fill', '#E06B47');
+      });
+      pin.addEventListener('mouseleave', () => {
+        if (pinPath && !pin.classList.contains('active')) pinPath.setAttribute('fill', '#C45D3E');
+      });
+    });
+
+    function openPanel(placeId) {
+      const d = places[placeId];
+      if (!d) return;
+
+      // Reset all pins
+      document.querySelectorAll('#torontoMap [data-place]').forEach(p => {
+        p.classList.remove('active');
+        const pp = p.querySelector('path[d*="C"]');
+        if (pp) pp.setAttribute('fill', '#C45D3E');
+      });
+      if (activeRing) { activeRing.setAttribute('opacity', '0'); cancelAnimationFrame(pulseAnim); }
+
+      // Activate pin
+      const pin = document.querySelector(`#torontoMap [data-place="${placeId}"]`);
+      if (pin) {
+        pin.classList.add('active');
+        const pp = pin.querySelector('path[d*="C"]');
+        if (pp) pp.setAttribute('fill', '#E06B47');
+        const ring = document.getElementById('ring-' + placeId);
+        if (ring) {
+          activeRing = ring;
+          ring.setAttribute('opacity', '1');
+          let t = 0;
+          function animateRing() {
+            t += 0.02;
+            ring.setAttribute('r', 22 + Math.sin(t) * 8);
+            ring.setAttribute('opacity', 0.6 + Math.sin(t) * 0.3);
+            pulseAnim = requestAnimationFrame(animateRing);
+          }
+          animateRing();
+        }
+      }
+
+      panelContent.innerHTML = `
+        <h2 class="panel-place-name">${d.name}</h2>
+        <p class="panel-place-name-zh">${d.nameZh}</p>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center">
+          <span class="panel-badge${d.free ? '' : ' paid'}" style="margin-bottom:0">${d.free ? 'Free Entry · 免费入场' : 'Paid Admission · 需购票'}</span>
+          ${d.freeWedEve ? '<span class="panel-badge wed-free" style="margin-bottom:0">Free Wed Evenings · 周三晚免费</span>' : ''}
+        </div>
+        <p class="panel-text">${d.desc}</p>
+        <p class="panel-text panel-text-zh">${d.descZh}</p>
+        <hr class="panel-line">
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div>
+            <div class="info-label">Best Time to Visit · 最佳游览时间</div>
+            <div class="info-value">${d.bestTime}</div>
+            <div class="info-value info-value-zh">${d.bestTimeZh}</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <div class="info-label">How Long to Spend · 建议游览时长</div>
+            <div class="info-value">${d.duration}</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div>
+            <div class="info-label">Price · 票价</div>
+            <div class="info-value">${d.price}</div>
+            <div class="info-value info-value-zh">${d.priceZh}</div>
+          </div>
+        </div>
+        ${d.address ? `
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="info-label">Address · 地址</div>
+            <div class="info-value">${d.address}</div>
+            <div class="info-value info-value-zh">${d.addressZh}</div>
+          </div>
+        </div>` : ''}
+        ${d.amenities ? `
+        <div class="panel-amenities">
+          ${d.amenities.map(a => `<span class="amenity-chip">${a}</span>`).join('')}
+        </div>` : ''}
+        <div class="panel-buttons">
+          <a href="${d.url}" target="_blank" rel="noopener" class="btn btn-fill">
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Official Website · 官方网站
+          </a>
+          <a href="${d.map.startsWith('http') ? d.map : 'https://www.google.com/maps/search/?api=1&query=' + d.map}" target="_blank" rel="noopener" class="btn btn-outline">
+            <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            View on Google Maps · 谷歌地图
+          </a>
+        </div>
+      `;
+
+      overlay.classList.add('show');
+      panel.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel() {
+      panel.classList.remove('show');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+      document.querySelectorAll('#torontoMap [data-place]').forEach(p => {
+        p.classList.remove('active');
+        const pp = p.querySelector('path[d*="C"]');
+        if (pp) pp.setAttribute('fill', '#C45D3E');
+      });
+      if (activeRing) { activeRing.setAttribute('opacity', '0'); cancelAnimationFrame(pulseAnim); activeRing = null; }
+    }
+
+    document.querySelectorAll('#torontoMap [data-place]').forEach(pin => {
+      pin.addEventListener('click', function(e) { e.stopPropagation(); openPanel(this.getAttribute('data-place')); });
+    });
+
+    document.querySelectorAll('.g-card[data-place]').forEach(card => {
+      card.addEventListener('click', () => {
+        openPanel(card.getAttribute('data-place'));
+        document.querySelector('.map-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    document.getElementById('panelClose').addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+  </script>
+
+</body>
+</html>
