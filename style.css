@@ -149,12 +149,51 @@ body::after {
   box-shadow:
     6px 6px 0 var(--gold-light),
     0 0 60px rgba(201,168,76,0.1);
+  height: 560px;
+  overflow: hidden;
 }
 
-.map-frame svg {
-  display: block;
+#map {
   width: 100%;
-  height: auto;
+  height: 100%;
+  background: #EDE3D0;
+}
+
+/* ===== Leaflet Custom Markers ===== */
+.leaflet-custom-pin { background: transparent; border: none; }
+.map-pin {
+  width: 40px;
+  height: 48px;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(2px 3px 4px rgba(44,36,22,0.35));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.map-pin:hover {
+  transform: translateY(-3px) scale(1.08);
+  filter: drop-shadow(2px 5px 6px rgba(44,36,22,0.45));
+}
+.map-pin.active {
+  transform: translateY(-4px) scale(1.12);
+  filter: drop-shadow(2px 6px 8px rgba(196,93,62,0.5));
+}
+.map-pin svg { width: 40px; height: 48px; display: block; }
+.map-pin.active::after {
+  content: '';
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border: 2px solid #C45D3E;
+  border-radius: 50%;
+  animation: pinPulse 1.2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pinPulse {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 /* ===== Detail Panel ===== */
@@ -530,8 +569,7 @@ body::after {
   .hero { padding: 4rem 1.5rem 1.5rem; }
   .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
 
-  .map-frame { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .map-frame svg { min-width: 750px; }
+  .map-frame { height: 420px; overflow: hidden; }
 
   .panel {
     width: 100%;

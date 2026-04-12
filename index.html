@@ -7,10 +7,8 @@
   <meta name="description" content="An illustrated guide to Toronto's 19 best places to visit. 多伦多19个最佳景点图解指南。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23C45D3E'/><line x1='50' y1='8' x2='50' y2='14' stroke='%23E06B47' stroke-width='2'/><line x1='50' y1='14' x2='50' y2='38' stroke='%23F7F0E3' stroke-width='2.5'/><ellipse cx='50' cy='40' rx='11' ry='5' fill='%23F7F0E3'/><ellipse cx='50' cy='38' rx='9' ry='3' fill='%23EDE3D0'/><ellipse cx='50' cy='42' rx='10' ry='2.5' fill='%23EDE3D0'/><path d='M46,44 L42,90 L58,90 L54,44' fill='%23F7F0E3'/><path d='M47,44 L43.5,90 L56.5,90 L53,44' fill='%23EDE3D0' opacity='0.4'/><rect x='42' y='68' width='16' height='3' rx='1' fill='%23C45D3E' opacity='0.2'/></svg>">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqaE=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -27,384 +25,13 @@
     </div>
   </section>
 
-  <!-- ===== Interactive SVG Map ===== -->
+  <!-- ===== Interactive Leaflet Map ===== -->
   <section class="map-section">
     <div class="map-frame">
-      <svg id="torontoMap" viewBox="0 0 1200 780" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="water" width="80" height="16" patternUnits="userSpaceOnUse">
-            <path d="M0 8 Q20 2 40 8 Q60 14 80 8" fill="none" stroke="#6BAACC" stroke-width="0.8" opacity="0.4"/>
-          </pattern>
-          <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
-            <circle cx="8" cy="8" r="0.6" fill="#2C2416" opacity="0.04"/>
-          </pattern>
-        </defs>
-
-        <!-- LAKE ONTARIO -->
-        <path d="M0 520 C80 510,200 495,350 490 C450 485,520 478,600 480 C700 483,800 478,900 482 C1000 485,1100 490,1200 500 L1200 780 L0 780Z" fill="#9DC8DE"/>
-        <path d="M0 520 C80 510,200 495,350 490 C450 485,520 478,600 480 C700 483,800 478,900 482 C1000 485,1100 490,1200 500 L1200 780 L0 780Z" fill="url(#water)"/>
-
-        <!-- Wave lines -->
-        <g opacity="0.25">
-          <path d="M0 555 Q80 545,160 555 Q240 565,320 555 Q400 545,480 555 Q560 565,640 555 Q720 545,800 555 Q880 565,960 555 Q1040 545,1120 555 Q1200 565,1280 555" fill="none" stroke="#3D7A9E" stroke-width="1.2">
-            <animateTransform attributeName="transform" type="translate" values="0,0;-80,0;0,0" dur="8s" repeatCount="indefinite"/>
-          </path>
-          <path d="M0 600 Q80 590,160 600 Q240 610,320 600 Q400 590,480 600 Q560 610,640 600 Q720 590,800 600 Q880 610,960 600 Q1040 590,1120 600 Q1200 610,1280 600" fill="none" stroke="#3D7A9E" stroke-width="0.8">
-            <animateTransform attributeName="transform" type="translate" values="0,0;-60,0;0,0" dur="10s" repeatCount="indefinite"/>
-          </path>
-        </g>
-
-        <!-- LAND -->
-        <path d="M0 0 L1200 0 L1200 500 C1100 490,1000 485,900 482 C800 478,700 483,600 480 C520 478,450 485,350 490 C200 495,80 510,0 520Z" fill="#EDE3D0"/>
-        <path d="M0 0 L1200 0 L1200 500 C1100 490,1000 485,900 482 C800 478,700 483,600 480 C520 478,450 485,350 490 C200 495,80 510,0 520Z" fill="url(#dots)"/>
-
-        <!-- TORONTO ISLANDS -->
-        <g opacity="0.6">
-          <ellipse cx="600" cy="530" rx="40" ry="10" fill="#8BB799" transform="rotate(-5,600,530)"/>
-          <ellipse cx="540" cy="535" rx="50" ry="12" fill="#8BB799" transform="rotate(3,540,535)"/>
-          <ellipse cx="480" cy="540" rx="30" ry="9" fill="#a3c7a8" transform="rotate(8,480,540)"/>
-          <circle cx="510" cy="532" r="5" fill="#4A7C59" opacity="0.5"/>
-          <circle cx="545" cy="530" r="6" fill="#4A7C59" opacity="0.4"/>
-          <circle cx="575" cy="528" r="4" fill="#4A7C59" opacity="0.5"/>
-        </g>
-
-        <!-- STREETS -->
-        <line x1="565" y1="60" x2="565" y2="478" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="6,5" opacity="0.1"/>
-        <text x="572" y="180" font-family="Caveat,cursive" font-size="10" fill="#2C2416" opacity="0.15" transform="rotate(-90,572,180)">Yonge Street</text>
-        <line x1="80" y1="310" x2="1050" y2="310" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="6,5" opacity="0.08"/>
-        <text x="750" y="304" font-family="Caveat,cursive" font-size="10" fill="#2C2416" opacity="0.13">Bloor Street</text>
-        <path d="M50 475 C200 462,350 458,500 456 C650 454,800 456,950 462 C1050 466,1150 472,1200 478" fill="none" stroke="#2C2416" stroke-width="0.8" stroke-dasharray="5,5" opacity="0.07"/>
-
-
-        <!-- DECORATIVE TREES -->
-        <g opacity="0.18">
-          <circle cx="120" cy="180" r="7" fill="#4A7C59"/><rect x="118.5" y="187" width="3" height="5" fill="#8B6B4A"/>
-          <circle cx="170" cy="350" r="5" fill="#4A7C59"/><rect x="168.5" y="355" width="3" height="4" fill="#8B6B4A"/>
-          <circle cx="320" cy="200" r="6" fill="#4A7C59"/><rect x="318.5" y="206" width="3" height="5" fill="#8B6B4A"/>
-          <circle cx="400" cy="280" r="5" fill="#4A7C59"/><rect x="398.5" y="285" width="3" height="4" fill="#8B6B4A"/>
-          <circle cx="700" cy="240" r="6" fill="#4A7C59"/><rect x="698.5" y="246" width="3" height="5" fill="#8B6B4A"/>
-          <circle cx="820" cy="190" r="5" fill="#4A7C59"/><rect x="818.5" y="195" width="3" height="4" fill="#8B6B4A"/>
-          <circle cx="960" cy="280" r="5" fill="#4A7C59"/><rect x="958.5" y="285" width="3" height="4" fill="#8B6B4A"/>
-          <circle cx="1080" cy="350" r="6" fill="#4A7C59"/><rect x="1078.5" y="356" width="3" height="5" fill="#8B6B4A"/>
-        </g>
-
-        <!-- DOTTED TRAILS -->
-        <path d="M210 355 C300 300,420 280,530 275" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-        <path d="M530 275 C570 310,610 340,640 340" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-        <path d="M640 340 L720 320" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-        <path d="M720 320 C820 360,920 400,1010 430" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-        <path d="M430 453 L520 440" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-        <path d="M520 440 L540 520" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="3,6" opacity="0.25"/>
-
-        <!-- COMPASS -->
-        <g transform="translate(1110,90)" opacity="0.25">
-          <circle r="30" fill="none" stroke="#2C2416" stroke-width="0.8"/>
-          <circle r="22" fill="none" stroke="#2C2416" stroke-width="0.5"/>
-          <line x1="0" y1="-28" x2="0" y2="28" stroke="#2C2416" stroke-width="0.6"/>
-          <line x1="-28" y1="0" x2="28" y2="0" stroke="#2C2416" stroke-width="0.6"/>
-          <polygon points="0,-26 -3,-14 3,-14" fill="#C45D3E"/>
-          <text x="-3" y="-33" font-family="Caveat,cursive" font-size="13" fill="#2C2416" font-weight="600">N</text>
-          <text x="-4" y="-33" font-family="sans-serif" font-size="8" fill="#2C2416" dy="10">北</text>
-        </g>
-
-        <!-- MAP TITLE -->
-        <text x="65" y="65" font-family="Instrument Serif,serif" font-size="26" fill="#2C2416" opacity="0.4">Toronto · 多伦多</text>
-        <text x="65" y="85" font-family="Caveat,cursive" font-size="14" fill="#6B5D4D" opacity="0.35">Ontario, Canada · 加拿大安大略省</text>
-        <text x="180" y="680" font-family="Instrument Serif,serif" font-size="28" fill="#3D7A9E" opacity="0.18" letter-spacing="10">LAKE ONTARIO · 安大略湖</text>
-
-
-        <!-- ======= PINS ======= -->
-
-        <!-- 1. High Park Zoo 高公园动物园 -->
-        <!-- High Park Zoo — label RIGHT (isolated in west) -->
-        <g id="pin-high-park-zoo" data-place="high-park-zoo" style="cursor:pointer">
-          <rect x="150" y="285" width="110" height="90" fill="transparent"/>
-          <circle id="ring-high-park-zoo" cx="200" cy="355" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M200,360 C200,360 175,340 175,325 C175,311 186,300 200,300 C214,300 225,311 225,325 C225,340 200,360 200,360Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Tree with paw print -->
-          <circle cx="200" cy="320" r="10" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <line x1="200" y1="330" x2="200" y2="340" stroke="#F7F0E3" stroke-width="1.8"/>
-          <circle cx="197" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/>
-          <circle cx="203" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/>
-          <circle cx="195" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/>
-          <circle cx="205" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/>
-          <ellipse cx="200" cy="325" rx="3" ry="2" fill="#F7F0E3" opacity="0.4"/>
-          <text x="230" y="326" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">High Park Zoo</text>
-          <text x="230" y="341" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">高公园动物园</text>
-        </g>
-
-        <!-- Gardiner Museum — label RIGHT (beside ROM, Gardiner is east) -->
-        <g id="pin-gardiner" data-place="gardiner" style="cursor:pointer">
-          <rect x="558" y="195" width="100" height="90" fill="transparent"/>
-          <circle id="ring-gardiner" cx="608" cy="258" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M608,263 C608,263 583,243 583,228 C583,214 594,203 608,203 C622,203 633,214 633,228 C633,243 608,263 608,263Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Vase with handles -->
-          <path d="M603,236 Q600,230 602,224 L605,218 L611,218 L614,224 Q616,230 613,236Z" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/>
-          <ellipse cx="608" cy="218" rx="4" ry="1.5" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <line x1="603" y1="236" x2="613" y2="236" stroke="#F7F0E3" stroke-width="1.5"/>
-          <path d="M602,223 Q597,226 602,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <path d="M614,223 Q619,226 614,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <text x="638" y="227" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Gardiner Museum</text>
-          <text x="638" y="242" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">加德纳陶瓷博物馆</text>
-        </g>
-
-        <!-- ROM — label LEFT (west of Gardiner) -->
-        <g id="pin-rom" data-place="rom" style="cursor:pointer">
-          <rect x="480" y="205" width="100" height="90" fill="transparent"/>
-          <circle id="ring-rom" cx="530" cy="275" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M530,280 C530,280 505,260 505,245 C505,231 516,220 530,220 C544,220 555,231 555,245 C555,260 530,280 530,280Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <polygon points="530,232 521,247 526,258 534,258 539,247" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <text x="500" y="244" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Royal Ontario Museum</text>
-          <text x="500" y="259" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">皇家安大略博物馆</text>
-        </g>
-
-        <!-- AGO — label LEFT (west of ROM cluster) -->
-        <g id="pin-ago" data-place="ago" style="cursor:pointer">
-          <rect x="418" y="275" width="100" height="90" fill="transparent"/>
-          <circle id="ring-ago" cx="468" cy="338" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M468,343 C468,343 443,323 443,308 C443,294 454,283 468,283 C482,283 493,294 493,308 C493,323 468,343 468,343Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Painting on easel -->
-          <rect x="458" y="301" width="20" height="14" fill="none" stroke="#F7F0E3" stroke-width="1.8" rx="1"/>
-          <path d="M458,311 L463,306 L467,309 L471,304 L478,311" fill="none" stroke="#F7F0E3" stroke-width="1.2" stroke-linejoin="round"/>
-          <circle cx="472" cy="306" r="2" fill="#F7F0E3" opacity="0.3"/>
-          <line x1="462" y1="315" x2="459" y2="322" stroke="#F7F0E3" stroke-width="1.3"/>
-          <line x1="474" y1="315" x2="477" y2="322" stroke="#F7F0E3" stroke-width="1.3"/>
-          <text x="438" y="307" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Art Gallery of Ontario</text>
-          <text x="438" y="322" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">安大略艺术画廊</text>
-        </g>
-
-        <!-- Aga Khan Museum — label RIGHT (isolated northeast) -->
-        <g id="pin-aga-khan" data-place="aga-khan" style="cursor:pointer">
-          <rect x="808" y="108" width="110" height="90" fill="transparent"/>
-          <circle id="ring-aga-khan" cx="865" cy="168" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M865,173 C865,173 840,153 840,138 C840,124 851,113 865,113 C879,113 890,124 890,138 C890,153 865,173 865,173Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Islamic pointed arch with diamond -->
-          <path d="M857,148 L857,136 Q865,126 873,136 L873,148" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="855" y1="148" x2="875" y2="148" stroke="#F7F0E3" stroke-width="1.8"/>
-          <rect x="862" y="136" width="6" height="6" transform="rotate(45 865 139)" fill="none" stroke="#F7F0E3" stroke-width="1.2"/>
-          <text x="895" y="137" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Aga Khan Museum</text>
-          <text x="895" y="152" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">阿迦汗博物馆</text>
-        </g>
-
-        <!-- Allan Gardens — label LEFT (moved east to 700,310) -->
-        <g id="pin-allan-gardens" data-place="allan-gardens" style="cursor:pointer">
-          <rect x="650" y="272" width="100" height="90" fill="transparent"/>
-          <circle id="ring-allan-gardens" cx="700" cy="310" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M700,345 C700,345 675,325 675,310 C675,296 686,285 700,285 C714,285 725,296 725,310 C725,325 700,345 700,345Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Glass dome conservatory -->
-          <path d="M691,320 Q691,302 700,298 Q709,302 709,320" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <line x1="689" y1="320" x2="711" y2="320" stroke="#F7F0E3" stroke-width="1.8"/>
-          <line x1="700" y1="298" x2="700" y2="320" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
-          <path d="M694,320 Q694,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
-          <path d="M706,320 Q706,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
-          <text x="670" y="309" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Allan Gardens</text>
-          <text x="670" y="324" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">艾伦花园</text>
-        </g>
-
-        <!-- Riverdale Farm — label RIGHT (moved east to 790,285) -->
-        <g id="pin-riverdale-farm" data-place="riverdale-farm" style="cursor:pointer">
-          <rect x="740" y="247" width="110" height="90" fill="transparent"/>
-          <circle id="ring-riverdale-farm" cx="790" cy="285" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M790,320 C790,320 765,300 765,285 C765,271 776,260 790,260 C804,260 815,271 815,285 C815,300 790,320 790,320Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Gambrel barn with flag -->
-          <rect x="780" y="283" width="20" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <path d="M778,283 L784,277 L790,272 L796,277 L802,283" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <path d="M786,295 Q790,291 794,295" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <line x1="790" y1="272" x2="790" y2="268" stroke="#F7F0E3" stroke-width="1.3"/>
-          <path d="M790,268 L794,269 L790,271" fill="#F7F0E3" opacity="0.7"/>
-          <text x="820" y="284" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Riverdale Farm</text>
-          <text x="820" y="299" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">河谷农场</text>
-        </g>
-
-        <!-- CN Tower — label RIGHT (moved south to 470,405) -->
-        <g id="pin-cn-tower" data-place="cn-tower" style="cursor:pointer">
-          <rect x="420" y="367" width="100" height="90" fill="transparent"/>
-          <circle id="ring-cn-tower" cx="470" cy="405" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M470,440 C470,440 445,420 445,405 C445,391 456,380 470,380 C484,380 495,391 495,405 C495,420 470,440 470,440Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- CN Tower silhouette (matches favicon) -->
-          <line x1="470" y1="393" x2="470" y2="395" stroke="#EDE3D0" stroke-width="1.2"/>
-          <line x1="470" y1="395" x2="470" y2="401" stroke="#F7F0E3" stroke-width="1.5"/>
-          <ellipse cx="470" cy="402.5" rx="6" ry="2.5" fill="#F7F0E3"/>
-          <ellipse cx="470" cy="401.5" rx="5" ry="1.5" fill="#EDE3D0" opacity="0.5"/>
-          <ellipse cx="470" cy="403.5" rx="5.5" ry="1.2" fill="#EDE3D0" opacity="0.4"/>
-          <path d="M468,404.5 L466,415 L474,415 L472,404.5" fill="#F7F0E3"/>
-          <path d="M468.3,404.5 L466.5,415 L473.5,415 L471.7,404.5" fill="#EDE3D0" opacity="0.3"/>
-          <text x="500" y="404" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">CN Tower</text>
-          <text x="500" y="419" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">国家电视塔</text>
-        </g>
-
-        <!-- Concord Canada House — label LEFT (moved west to 375,445) -->
-        <g id="pin-concord" data-place="concord" style="cursor:pointer">
-          <rect x="325" y="407" width="100" height="90" fill="transparent"/>
-          <circle id="ring-concord" cx="375" cy="445" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M375,480 C375,480 350,460 350,445 C350,431 361,420 375,420 C389,420 400,431 400,445 C400,460 375,480 375,480Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Modern tower + pool wave -->
-          <rect x="369" y="436" width="12" height="18" rx="1" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <rect x="372" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
-          <rect x="377" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
-          <rect x="372" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
-          <rect x="377" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/>
-          <path d="M367,456 Q372,453 375,456 Q378,459 383,456" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <text x="345" y="444" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Concord Canada House</text>
-          <text x="345" y="459" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">协和加拿大公寓</text>
-        </g>
-
-        <!-- Waterfront — label RIGHT (moved east to 590,435) -->
-        <g id="pin-waterfront" data-place="waterfront" style="cursor:pointer">
-          <rect x="540" y="397" width="110" height="90" fill="transparent"/>
-          <circle id="ring-waterfront" cx="590" cy="435" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M590,470 C590,470 565,450 565,435 C565,421 576,410 590,410 C604,410 615,421 615,435 C615,450 590,470 590,470Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Sunset over waves -->
-          <path d="M583,435 A7,7 0 0,1 597,435" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <line x1="590" y1="427" x2="590" y2="431" stroke="#F7F0E3" stroke-width="1.3" opacity="0.5"/>
-          <line x1="585" y1="429" x2="586" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/>
-          <line x1="595" y1="429" x2="594" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/>
-          <line x1="581" y1="435" x2="599" y2="435" stroke="#F7F0E3" stroke-width="1.3"/>
-          <path d="M581,441 Q586,437 590,441 Q594,445 599,441" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <text x="620" y="434" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Waterfront</text>
-          <text x="620" y="449" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">湖滨区</text>
-        </g>
-
-        <!-- Toronto Islands — label BELOW (in lake, plenty of space) -->
-        <g id="pin-toronto-islands" data-place="toronto-islands" style="cursor:pointer">
-          <rect x="497" y="453" width="100" height="105" fill="transparent"/>
-          <circle id="ring-toronto-islands" cx="545" cy="518" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M545,523 C545,523 520,503 520,488 C520,474 531,463 545,463 C559,463 570,474 570,488 C570,503 545,523 545,523Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <polygon points="545,475 545,498 535,498" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="545" y1="475" x2="545" y2="500" stroke="#F7F0E3" stroke-width="1.8"/>
-          <path d="M535,502 Q545,506 555,502" fill="none" stroke="#F7F0E3" stroke-width="1.8"/>
-          <text x="545" y="542" text-anchor="middle" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Toronto Islands</text>
-          <text x="545" y="557" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6B5D4D">多伦多群岛</text>
-        </g>
-
-        <!-- Casa Loma — label RIGHT (midtown north, isolated) -->
-        <g id="pin-casa-loma" data-place="casa-loma" style="cursor:pointer">
-          <rect x="328" y="111" width="100" height="90" fill="transparent"/>
-          <circle id="ring-casa-loma" cx="378" cy="161" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M378,196 C378,196 353,176 353,161 C353,147 364,136 378,136 C392,136 403,147 403,161 C403,176 378,196 378,196Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Castle with flag -->
-          <rect x="368" y="159" width="8" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <path d="M368,159 L369,155 L371,159 M373,159 L374,155 L376,159" stroke="#F7F0E3" fill="none" stroke-width="1.3"/>
-          <line x1="372" y1="155" x2="372" y2="150" stroke="#F7F0E3" stroke-width="1.3"/>
-          <path d="M372,150 L377,152 L372,154" fill="#F7F0E3" opacity="0.8"/>
-          <rect x="378" y="162" width="8" height="9" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <path d="M378,162 L379,158 L381,162 M383,162 L384,158 L386,162" stroke="#F7F0E3" fill="none" stroke-width="1.3"/>
-          <line x1="376" y1="167" x2="378" y2="167" stroke="#F7F0E3" stroke-width="1.3"/>
-          <text x="408" y="157" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Casa Loma</text>
-          <text x="408" y="172" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">卡萨罗玛城堡</text>
-        </g>
-
-        <!-- Union Station — label RIGHT (moved south to 550,358) -->
-        <g id="pin-union-station" data-place="union-station" style="cursor:pointer">
-          <rect x="500" y="320" width="110" height="90" fill="transparent"/>
-          <circle id="ring-union-station" cx="550" cy="358" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M550,393 C550,393 525,373 525,358 C525,344 536,333 550,333 C564,333 575,344 575,358 C575,373 550,393 550,393Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Grand arch with clock -->
-          <polygon points="550,347 540,355 560,355" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/>
-          <circle cx="550" cy="352" r="2" fill="none" stroke="#F7F0E3" stroke-width="1"/>
-          <line x1="540" y1="355" x2="540" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
-          <line x1="560" y1="355" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
-          <line x1="540" y1="369" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/>
-          <path d="M546,369 Q550,363 554,369" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <text x="580" y="357" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Union Station</text>
-          <text x="580" y="372" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">联合车站</text>
-        </g>
-
-        <!-- Pearson Airport — label RIGHT (far west edge) -->
-        <g id="pin-pearson" data-place="pearson" style="cursor:pointer">
-          <rect x="18" y="168" width="100" height="90" fill="transparent"/>
-          <circle id="ring-pearson" cx="68" cy="213" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M68,251 C68,251 43,231 43,216 C43,202 54,191 68,191 C82,191 93,202 93,216 C93,231 68,251 68,251Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Top-down airplane -->
-          <line x1="68" y1="204" x2="68" y2="224" stroke="#F7F0E3" stroke-width="2" stroke-linecap="round"/>
-          <path d="M68,210 L56,216 L58,217 L68,213" fill="#F7F0E3" opacity="0.8"/>
-          <path d="M68,210 L80,216 L78,217 L68,213" fill="#F7F0E3" opacity="0.8"/>
-          <path d="M68,220 L63,224 L64,223 L68,221" fill="#F7F0E3" opacity="0.8"/>
-          <path d="M68,220 L73,224 L72,223 L68,221" fill="#F7F0E3" opacity="0.8"/>
-          <circle cx="68" cy="206" r="2" fill="#F7F0E3" opacity="0.4"/>
-          <text x="98" y="212" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Pearson Airport</text>
-          <text x="98" y="227" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">皮尔逊机场</text>
-        </g>
-
-        <!-- Scarborough Bluffs — label LEFT (far right edge of map) -->
-        <g id="pin-scarborough-bluffs" data-place="scarborough-bluffs" style="cursor:pointer">
-          <rect x="955" y="368" width="100" height="90" fill="transparent"/>
-          <circle id="ring-scarborough-bluffs" cx="1010" cy="432" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M1010,437 C1010,437 985,417 985,402 C985,388 996,377 1010,377 C1024,377 1035,388 1035,402 C1035,417 1010,437 1010,437Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <polyline points="998,414 1004,398 1010,408 1016,392 1022,414" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="998" y1="414" x2="1022" y2="414" stroke="#F7F0E3" stroke-width="1.8"/>
-          <text x="980" y="401" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Scarborough Bluffs</text>
-          <text x="980" y="416" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">斯卡伯勒悬崖</text>
-        </g>
-
-        <!-- Fort York National Historic Site — label RIGHT (west of CN Tower) -->
-        <g id="pin-fort-york" data-place="fort-york" style="cursor:pointer">
-          <rect x="355" y="335" width="110" height="90" fill="transparent"/>
-          <circle id="ring-fort-york" cx="405" cy="375" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M405,410 C405,410 380,390 380,375 C380,361 391,350 405,350 C419,350 430,361 430,375 C430,390 405,410 405,410Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Cannon icon -->
-          <rect x="395" y="367" width="15" height="7" rx="2" fill="none" stroke="#F7F0E3" stroke-width="1.5"/>
-          <line x1="410" y1="368" x2="416" y2="368" stroke="#F7F0E3" stroke-width="1.5"/>
-          <line x1="410" y1="373" x2="416" y2="373" stroke="#F7F0E3" stroke-width="1.5"/>
-          <circle cx="399" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <circle cx="407" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/>
-          <text x="435" y="374" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Fort York</text>
-          <text x="435" y="389" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">约克要塞</text>
-        </g>
-
-        <!-- Toronto Railway Museum — label LEFT (south of Union Station, east of CN Tower) -->
-        <g id="pin-railway-museum" data-place="railway-museum" style="cursor:pointer">
-          <rect x="490" y="412" width="100" height="90" fill="transparent"/>
-          <circle id="ring-railway-museum" cx="540" cy="452" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M540,487 C540,487 515,467 515,452 C515,438 526,427 540,427 C554,427 565,438 565,452 C565,467 540,487 540,487Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Train driving wheel with spokes (matches card icon, centered on pin head) -->
-          <circle cx="540" cy="452" r="7" fill="none" stroke="#F7F0E3" stroke-width="1.4"/>
-          <circle cx="540" cy="452" r="1.8" fill="none" stroke="#F7F0E3" stroke-width="1"/>
-          <line x1="540" y1="445" x2="540" y2="459" stroke="#F7F0E3" stroke-width="0.9"/>
-          <line x1="533" y1="452" x2="547" y2="452" stroke="#F7F0E3" stroke-width="0.9"/>
-          <line x1="535" y1="447" x2="545" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/>
-          <line x1="545" y1="447" x2="535" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/>
-          <line x1="535" y1="461" x2="545" y2="461" stroke="#F7F0E3" stroke-width="1.2" stroke-linecap="round"/>
-          <text x="510" y="451" text-anchor="end" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Railway Museum</text>
-          <text x="510" y="466" text-anchor="end" font-family="sans-serif" font-size="11" fill="#6B5D4D">铁路博物馆</text>
-        </g>
-
-        <!-- Love Park — label RIGHT (eastern waterfront, Waterfront Toronto project) -->
-        <g id="pin-love-park" data-place="love-park" style="cursor:pointer">
-          <rect x="622" y="422" width="110" height="90" fill="transparent"/>
-          <circle id="ring-love-park" cx="672" cy="462" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M672,497 C672,497 647,477 647,462 C647,448 658,437 672,437 C686,437 697,448 697,462 C697,477 672,497 672,497Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Heart with stem + grass (matches card icon, centered on pin head) -->
-          <path d="M672,469 C672,469 664,464 665,458 C666,455 669,455 672,459 C675,455 678,455 679,458 C680,464 672,469 672,469Z" fill="none" stroke="#F7F0E3" stroke-width="1.4" stroke-linejoin="round"/>
-          <line x1="672" y1="469" x2="672" y2="472" stroke="#F7F0E3" stroke-width="1"/>
-          <path d="M669,472 Q672,470 675,472" fill="none" stroke="#F7F0E3" stroke-width="1"/>
-          <text x="702" y="461" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Love Park</text>
-          <text x="702" y="476" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">洛夫公园</text>
-        </g>
-
-        <!-- Elgin & Winter Garden Theatres — label RIGHT (placed east of Union Station cluster) -->
-        <g id="pin-elgin-winter-garden" data-place="elgin-winter-garden" style="cursor:pointer">
-          <rect x="605" y="347" width="130" height="90" fill="transparent"/>
-          <circle id="ring-elgin-winter-garden" cx="655" cy="385" r="22" fill="none" stroke="#C45D3E" stroke-width="2" opacity="0"/>
-          <path d="M655,420 C655,420 630,400 630,385 C630,371 641,360 655,360 C669,360 680,371 680,385 C680,400 655,420 655,420Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/>
-          <!-- Outer proscenium arch + floor -->
-          <path d="M646,395 L646,381 Q646,374 655,374 Q664,374 664,381 L664,395" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="644" y1="395" x2="666" y2="395" stroke="#F7F0E3" stroke-width="1.8"/>
-          <!-- Inner arch -->
-          <path d="M649,395 L649,382 Q649,377 655,377 Q661,377 661,382 L661,395" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/>
-          <!-- Left curtain -->
-          <path d="M646,381 Q644,386 646,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/>
-          <!-- Right curtain -->
-          <path d="M664,381 Q666,386 664,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/>
-          <!-- Spotlight circle -->
-          <circle cx="655" cy="386" r="2" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/>
-          <text x="685" y="384" text-anchor="start" font-family="Caveat,cursive" font-size="14" fill="#2C2416" font-weight="700">Elgin &amp; Winter Garden</text>
-          <text x="685" y="399" text-anchor="start" font-family="sans-serif" font-size="11" fill="#6B5D4D">双层历史剧院</text>
-        </g>
-
-      </svg>
+      <div id="map"></div>
     </div>
   </section>
+
 
   <!-- ===== Slide-in Panel ===== -->
   <div class="overlay" id="overlay"></div>
@@ -421,7 +48,7 @@
     <p class="gallery-sub">click any card to explore · 点击卡片查看详情</p>
     <div class="gallery-grid">
       <div class="g-card" data-place="toronto-islands">
-        <span class="g-card-tag paid">$9 ferry · 轮渡</span>
+        <span class="g-card-tag paid">~$9 ferry · 轮渡</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><polygon points="24,6 24,36 10,36" stroke="#3D7A9E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="24" y1="6" x2="24" y2="40" stroke="#3D7A9E" stroke-width="2.5"/><path d="M8,41 Q24,47 40,41" stroke="#3D7A9E" fill="none" stroke-width="2.5"/></svg></div>
         <h3>Toronto Islands <span class="zh">多伦多群岛</span></h3>
         <p>6–8 hrs · Best in summer & fall<br>6–8小时 · 夏秋最佳</p>
@@ -457,7 +84,7 @@
         <p>2–4 hrs · Stunning sunsets<br>2–4小时 · 日落绝景</p>
       </div>
       <div class="g-card" data-place="elgin-winter-garden">
-        <span class="g-card-tag paid">Tickets vary · 票价不等</span>
+        <span class="g-card-tag paid">~$20 · 须购票</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M8,42 L8,16 Q8,6 24,6 Q40,6 40,16 L40,42" stroke="#C9A84C" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="6" y1="42" x2="42" y2="42" stroke="#C9A84C" stroke-width="2.5"/><path d="M14,42 L14,20 Q14,12 24,12 Q34,12 34,20 L34,42" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.4"/><path d="M8,16 Q11,26 8,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><path d="M40,16 Q37,26 40,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><circle cx="24" cy="26" r="4" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/></svg></div>
         <h3>Elgin &amp; Winter Garden Theatres <span class="zh">双层历史剧院</span></h3>
         <p>2–3 hrs · World's last Edwardian double theatre<br>2–3小时 · 世界最后双层爱德华剧院</p>
@@ -484,7 +111,7 @@
         <span class="g-card-tag">Free · 免费</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="14" r="12" stroke="#4A7C59" fill="none" stroke-width="2.5"/><line x1="24" y1="26" x2="24" y2="40" stroke="#4A7C59" stroke-width="2.5"/><circle cx="20" cy="10" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="28" cy="10" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="17" cy="16" r="2" fill="#4A7C59" opacity="0.4"/><circle cx="31" cy="16" r="2" fill="#4A7C59" opacity="0.4"/><ellipse cx="24" cy="18" rx="4" ry="3" fill="#4A7C59" opacity="0.3"/><path d="M14,40 Q24,44 34,40" stroke="#4A7C59" fill="none" stroke-width="2"/></svg></div>
         <h3>High Park Zoo <span class="zh">高公园动物园</span></h3>
-        <p>2–3 hrs · Best in summer & fall<br>2–3小时 · 夏秋最佳</p>
+        <p>2–3 hrs · Best in spring, summer & fall<br>2–3小时 · 春夏秋最佳</p>
       </div>
       <div class="g-card" data-place="concord">
         <span class="g-card-tag paid">Residence · 公寓</span>
@@ -493,13 +120,13 @@
         <p>Pool · Sauna · Hot tub · Steam<br>泳池 · 桑拿 · 热水浴 · 蒸汽室</p>
       </div>
       <div class="g-card" data-place="cn-tower">
-        <span class="g-card-tag paid">~$43 · 需购票</span>
+        <span class="g-card-tag paid">~$43</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><line x1="24" y1="2" x2="24" y2="5" stroke="#E06B47" stroke-width="1.5"/><line x1="24" y1="5" x2="24" y2="18" stroke="#C45D3E" stroke-width="2"/><ellipse cx="24" cy="20" rx="10" ry="4.5" fill="#C45D3E" opacity="0.12"/><ellipse cx="24" cy="20" rx="10" ry="4.5" fill="none" stroke="#C45D3E" stroke-width="1.8"/><ellipse cx="24" cy="19" rx="8" ry="2.5" fill="#C45D3E" opacity="0.06" stroke="#C45D3E" stroke-width="1" opacity="0.4"/><ellipse cx="24" cy="21.5" rx="9" ry="2" fill="#C45D3E" opacity="0.06" stroke="#C45D3E" stroke-width="1" opacity="0.35"/><path d="M21,24 L18,46 L30,46 L27,24" fill="#C45D3E" opacity="0.1" stroke="#C45D3E" stroke-width="1.8" stroke-linejoin="round"/><path d="M21.5,24 L19,46 L29,46 L26.5,24" fill="#C45D3E" opacity="0.06"/></svg></div>
         <h3>CN Tower <span class="zh">国家电视塔</span></h3>
         <p>1–2 hrs · City landmark<br>1–2小时 · 城市地标</p>
       </div>
       <div class="g-card" data-place="casa-loma">
-        <span class="g-card-tag paid">~$30 · 需购票</span>
+        <span class="g-card-tag paid">~$30 · 须购票</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><rect x="6" y="16" width="12" height="26" stroke="#C9A84C" fill="none" stroke-width="2.5"/><path d="M6,16 L7,11 L9,16 M10,16 L11,11 L13,16 M14,16 L15,11 L18,16" stroke="#C9A84C" fill="none" stroke-width="2"/><line x1="12" y1="11" x2="12" y2="4" stroke="#C9A84C" stroke-width="2"/><path d="M12,4 L20,7 L12,10" fill="#C9A84C" opacity="0.5"/><rect x="30" y="22" width="12" height="20" stroke="#C9A84C" fill="none" stroke-width="2.5"/><path d="M30,22 L31,17 L33,22 M34,22 L35,17 L37,22 M38,22 L39,17 L42,22" stroke="#C9A84C" fill="none" stroke-width="2"/><rect x="18" y="30" width="12" height="12" stroke="#C9A84C" fill="none" stroke-width="2"/><path d="M20,42 Q24,35 28,42" stroke="#C9A84C" fill="none" stroke-width="2"/></svg></div>
         <h3>Casa Loma <span class="zh">卡萨罗玛城堡</span></h3>
         <p>2–3 hrs · Midtown landmark<br>2–3小时 · 中城地标</p>
@@ -523,7 +150,7 @@
         <p>1–2 hrs · Birthplace of Toronto<br>1–2小时 · 多伦多发祥地</p>
       </div>
       <div class="g-card" data-place="railway-museum">
-        <span class="g-card-tag paid">Paid · 需购票</span>
+        <span class="g-card-tag paid">~$14</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" stroke="#3D7A9E" fill="none" stroke-width="2.5"/><circle cx="24" cy="24" r="4" stroke="#3D7A9E" fill="none" stroke-width="2"/><line x1="24" y1="8" x2="24" y2="40" stroke="#3D7A9E" stroke-width="1.5"/><line x1="8" y1="24" x2="40" y2="24" stroke="#3D7A9E" stroke-width="1.5"/><line x1="13" y1="13" x2="35" y2="35" stroke="#3D7A9E" stroke-width="1.5" opacity="0.6"/><line x1="35" y1="13" x2="13" y2="35" stroke="#3D7A9E" stroke-width="1.5" opacity="0.6"/><line x1="14" y1="42" x2="34" y2="42" stroke="#3D7A9E" stroke-width="2.5" stroke-linecap="round"/></svg></div>
         <h3>Toronto Railway Museum <span class="zh">多伦多铁路博物馆</span></h3>
         <p>1–2 hrs · Steam locomotives &amp; heritage cars<br>1–2小时 · 蒸汽机车与历史车厢</p>
@@ -840,58 +467,28 @@
     const overlay = document.getElementById('overlay');
     const panel = document.getElementById('panel');
     const panelContent = document.getElementById('panelContent');
-    let activeRing = null;
-    let pulseAnim = null;
-
-    // Hover via JS
-    document.querySelectorAll('#torontoMap [data-place]').forEach(pin => {
-      const pinPath = pin.querySelector('path[d*="C"]');
-      pin.addEventListener('mouseenter', () => {
-        if (pinPath && !pin.classList.contains('active')) pinPath.setAttribute('fill', '#E06B47');
-      });
-      pin.addEventListener('mouseleave', () => {
-        if (pinPath && !pin.classList.contains('active')) pinPath.setAttribute('fill', '#C45D3E');
-      });
-    });
+    let activeMarkerEl = null;
+    const markerMap = {};
 
     function openPanel(placeId) {
       const d = places[placeId];
       if (!d) return;
 
-      // Reset all pins
-      document.querySelectorAll('#torontoMap [data-place]').forEach(p => {
-        p.classList.remove('active');
-        const pp = p.querySelector('path[d*="C"]');
-        if (pp) pp.setAttribute('fill', '#C45D3E');
-      });
-      if (activeRing) { activeRing.setAttribute('opacity', '0'); cancelAnimationFrame(pulseAnim); }
-
-      // Activate pin
-      const pin = document.querySelector(`#torontoMap [data-place="${placeId}"]`);
-      if (pin) {
-        pin.classList.add('active');
-        const pp = pin.querySelector('path[d*="C"]');
-        if (pp) pp.setAttribute('fill', '#E06B47');
-        const ring = document.getElementById('ring-' + placeId);
-        if (ring) {
-          activeRing = ring;
-          ring.setAttribute('opacity', '1');
-          let t = 0;
-          function animateRing() {
-            t += 0.02;
-            ring.setAttribute('r', 22 + Math.sin(t) * 8);
-            ring.setAttribute('opacity', 0.6 + Math.sin(t) * 0.3);
-            pulseAnim = requestAnimationFrame(animateRing);
-          }
-          animateRing();
-        }
+      if (activeMarkerEl) activeMarkerEl.classList.remove('active');
+      activeMarkerEl = null;
+      const entry = markerMap[placeId];
+      if (entry && entry.el) {
+        activeMarkerEl = entry.el;
+        activeMarkerEl.classList.add('active');
+        if (window.leafletMap) window.leafletMap.panTo(entry.marker.getLatLng(), { animate: true, duration: 0.5 });
       }
 
-      panelContent.innerHTML = `
+      panelContent.textContent = '';
+      panelContent.insertAdjacentHTML('beforeend', `
         <h2 class="panel-place-name">${d.name}</h2>
         <p class="panel-place-name-zh">${d.nameZh}</p>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center">
-          <span class="panel-badge${d.free ? '' : ' paid'}" style="margin-bottom:0">${d.free ? 'Free Entry · 免费入场' : 'Paid Admission · 需购票'}</span>
+          <span class="panel-badge${d.free ? '' : ' paid'}" style="margin-bottom:0">${d.free ? 'Free Entry · 免费入场' : 'Paid Admission · 须购票'}</span>
           ${d.freeWedEve ? '<span class="panel-badge wed-free" style="margin-bottom:0">Free Wed Evenings · 周三晚免费</span>' : ''}
         </div>
         <p class="panel-text">${d.desc}</p>
@@ -943,7 +540,7 @@
             View on Google Maps · 谷歌地图
           </a>
         </div>
-      `;
+      `);
 
       overlay.classList.add('show');
       panel.classList.add('show');
@@ -954,17 +551,8 @@
       panel.classList.remove('show');
       overlay.classList.remove('show');
       document.body.style.overflow = '';
-      document.querySelectorAll('#torontoMap [data-place]').forEach(p => {
-        p.classList.remove('active');
-        const pp = p.querySelector('path[d*="C"]');
-        if (pp) pp.setAttribute('fill', '#C45D3E');
-      });
-      if (activeRing) { activeRing.setAttribute('opacity', '0'); cancelAnimationFrame(pulseAnim); activeRing = null; }
+      if (activeMarkerEl) { activeMarkerEl.classList.remove('active'); activeMarkerEl = null; }
     }
-
-    document.querySelectorAll('#torontoMap [data-place]').forEach(pin => {
-      pin.addEventListener('click', function(e) { e.stopPropagation(); openPanel(this.getAttribute('data-place')); });
-    });
 
     document.querySelectorAll('.g-card[data-place]').forEach(card => {
       card.addEventListener('click', () => {
@@ -976,6 +564,80 @@
     document.getElementById('panelClose').addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+    // ===== Leaflet Map Init =====
+    const placeCoords = {
+      'concord': [43.6402, -79.4015],
+      'toronto-islands': [43.6200, -79.3832],
+      'allan-gardens': [43.6611, -79.3731],
+      'riverdale-farm': [43.6632, -79.3603],
+      'high-park-zoo': [43.6469, -79.4634],
+      'gardiner': [43.6677, -79.3930],
+      'rom': [43.6677, -79.3948],
+      'ago': [43.6536, -79.3925],
+      'aga-khan': [43.7250, -79.3292],
+      'cn-tower': [43.6426, -79.3871],
+      'waterfront': [43.6390, -79.3786],
+      'casa-loma': [43.6780, -79.4095],
+      'union-station': [43.6454, -79.3806],
+      'pearson': [43.6777, -79.6248],
+      'scarborough-bluffs': [43.7076, -79.2327],
+      'fort-york': [43.6392, -79.4028],
+      'railway-museum': [43.6416, -79.3868],
+      'love-park': [43.6403, -79.3830],
+      'elgin-winter-garden': [43.6531, -79.3790]
+    };
+
+    const leafletMap = L.map('map', { scrollWheelZoom: false });
+    window.leafletMap = leafletMap;
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(leafletMap);
+
+    const pinIcons = {
+      'high-park-zoo': `<svg viewBox="175 300 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M200,360 C200,360 175,340 175,325 C175,311 186,300 200,300 C214,300 225,311 225,325 C225,340 200,360 200,360Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><circle cx="200" cy="320" r="10" fill="none" stroke="#F7F0E3" stroke-width="1.8"/><line x1="200" y1="330" x2="200" y2="340" stroke="#F7F0E3" stroke-width="1.8"/><circle cx="197" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/><circle cx="203" cy="317" r="1.5" fill="#F7F0E3" opacity="0.6"/><circle cx="195" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/><circle cx="205" cy="322" r="1.5" fill="#F7F0E3" opacity="0.6"/><ellipse cx="200" cy="325" rx="3" ry="2" fill="#F7F0E3" opacity="0.4"/></svg>`,
+      'gardiner': `<svg viewBox="583 203 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M608,263 C608,263 583,243 583,228 C583,214 594,203 608,203 C622,203 633,214 633,228 C633,243 608,263 608,263Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M603,236 Q600,230 602,224 L605,218 L611,218 L614,224 Q616,230 613,236Z" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/><ellipse cx="608" cy="218" rx="4" ry="1.5" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><line x1="603" y1="236" x2="613" y2="236" stroke="#F7F0E3" stroke-width="1.5"/><path d="M602,223 Q597,226 602,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/><path d="M614,223 Q619,226 614,229" fill="none" stroke="#F7F0E3" stroke-width="1.3"/></svg>`,
+      'rom': `<svg viewBox="505 220 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M530,280 C530,280 505,260 505,245 C505,231 516,220 530,220 C544,220 555,231 555,245 C555,260 530,280 530,280Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><polygon points="530,232 521,247 526,258 534,258 539,247" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/></svg>`,
+      'ago': `<svg viewBox="443 283 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M468,343 C468,343 443,323 443,308 C443,294 454,283 468,283 C482,283 493,294 493,308 C493,323 468,343 468,343Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="458" y="301" width="20" height="14" fill="none" stroke="#F7F0E3" stroke-width="1.8" rx="1"/><path d="M458,311 L463,306 L467,309 L471,304 L478,311" fill="none" stroke="#F7F0E3" stroke-width="1.2" stroke-linejoin="round"/><circle cx="472" cy="306" r="2" fill="#F7F0E3" opacity="0.3"/><line x1="462" y1="315" x2="459" y2="322" stroke="#F7F0E3" stroke-width="1.3"/><line x1="474" y1="315" x2="477" y2="322" stroke="#F7F0E3" stroke-width="1.3"/></svg>`,
+      'aga-khan': `<svg viewBox="840 113 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M865,173 C865,173 840,153 840,138 C840,124 851,113 865,113 C879,113 890,124 890,138 C890,153 865,173 865,173Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M857,148 L857,136 Q865,126 873,136 L873,148" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/><line x1="855" y1="148" x2="875" y2="148" stroke="#F7F0E3" stroke-width="1.8"/><rect x="862" y="136" width="6" height="6" transform="rotate(45 865 139)" fill="none" stroke="#F7F0E3" stroke-width="1.2"/></svg>`,
+      'allan-gardens': `<svg viewBox="675 285 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M700,345 C700,345 675,325 675,310 C675,296 686,285 700,285 C714,285 725,296 725,310 C725,325 700,345 700,345Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M691,320 Q691,302 700,298 Q709,302 709,320" fill="none" stroke="#F7F0E3" stroke-width="1.8"/><line x1="689" y1="320" x2="711" y2="320" stroke="#F7F0E3" stroke-width="1.8"/><line x1="700" y1="298" x2="700" y2="320" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/><path d="M694,320 Q694,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/><path d="M706,320 Q706,306 700,302" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/></svg>`,
+      'riverdale-farm': `<svg viewBox="765 260 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M790,320 C790,320 765,300 765,285 C765,271 776,260 790,260 C804,260 815,271 815,285 C815,300 790,320 790,320Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="780" y="283" width="20" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.8"/><path d="M778,283 L784,277 L790,272 L796,277 L802,283" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/><path d="M786,295 Q790,291 794,295" fill="none" stroke="#F7F0E3" stroke-width="1.3"/><line x1="790" y1="272" x2="790" y2="268" stroke="#F7F0E3" stroke-width="1.3"/><path d="M790,268 L794,269 L790,271" fill="#F7F0E3" opacity="0.7"/></svg>`,
+      'cn-tower': `<svg viewBox="445 380 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M470,440 C470,440 445,420 445,405 C445,391 456,380 470,380 C484,380 495,391 495,405 C495,420 470,440 470,440Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><line x1="470" y1="393" x2="470" y2="395" stroke="#EDE3D0" stroke-width="1.2"/><line x1="470" y1="395" x2="470" y2="401" stroke="#F7F0E3" stroke-width="1.5"/><ellipse cx="470" cy="402.5" rx="6" ry="2.5" fill="#F7F0E3"/><ellipse cx="470" cy="401.5" rx="5" ry="1.5" fill="#EDE3D0" opacity="0.5"/><ellipse cx="470" cy="403.5" rx="5.5" ry="1.2" fill="#EDE3D0" opacity="0.4"/><path d="M468,404.5 L466,415 L474,415 L472,404.5" fill="#F7F0E3"/><path d="M468.3,404.5 L466.5,415 L473.5,415 L471.7,404.5" fill="#EDE3D0" opacity="0.3"/></svg>`,
+      'concord': `<svg viewBox="350 420 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M375,480 C375,480 350,460 350,445 C350,431 361,420 375,420 C389,420 400,431 400,445 C400,460 375,480 375,480Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="369" y="436" width="12" height="18" rx="1" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><rect x="372" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/><rect x="377" y="439" width="3" height="2" fill="#F7F0E3" opacity="0.7"/><rect x="372" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/><rect x="377" y="444" width="3" height="2" fill="#F7F0E3" opacity="0.7"/><path d="M367,456 Q372,453 375,456 Q378,459 383,456" fill="none" stroke="#F7F0E3" stroke-width="1.3"/></svg>`,
+      'waterfront': `<svg viewBox="565 410 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M590,470 C590,470 565,450 565,435 C565,421 576,410 590,410 C604,410 615,421 615,435 C615,450 590,470 590,470Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M583,435 A7,7 0 0,1 597,435" fill="none" stroke="#F7F0E3" stroke-width="1.8"/><line x1="590" y1="427" x2="590" y2="431" stroke="#F7F0E3" stroke-width="1.3" opacity="0.5"/><line x1="585" y1="429" x2="586" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/><line x1="595" y1="429" x2="594" y2="432" stroke="#F7F0E3" stroke-width="1.3" opacity="0.4"/><line x1="581" y1="435" x2="599" y2="435" stroke="#F7F0E3" stroke-width="1.3"/><path d="M581,441 Q586,437 590,441 Q594,445 599,441" fill="none" stroke="#F7F0E3" stroke-width="1.8"/></svg>`,
+      'toronto-islands': `<svg viewBox="520 463 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M545,523 C545,523 520,503 520,488 C520,474 531,463 545,463 C559,463 570,474 570,488 C570,503 545,523 545,523Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><polygon points="545,475 545,498 535,498" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/><line x1="545" y1="475" x2="545" y2="500" stroke="#F7F0E3" stroke-width="1.8"/><path d="M535,502 Q545,506 555,502" fill="none" stroke="#F7F0E3" stroke-width="1.8"/></svg>`,
+      'casa-loma': `<svg viewBox="353 136 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M378,196 C378,196 353,176 353,161 C353,147 364,136 378,136 C392,136 403,147 403,161 C403,176 378,196 378,196Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="368" y="159" width="8" height="12" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><path d="M368,159 L369,155 L371,159 M373,159 L374,155 L376,159" stroke="#F7F0E3" fill="none" stroke-width="1.3"/><line x1="372" y1="155" x2="372" y2="150" stroke="#F7F0E3" stroke-width="1.3"/><path d="M372,150 L377,152 L372,154" fill="#F7F0E3" opacity="0.8"/><rect x="378" y="162" width="8" height="9" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><path d="M378,162 L379,158 L381,162 M383,162 L384,158 L386,162" stroke="#F7F0E3" fill="none" stroke-width="1.3"/><line x1="376" y1="167" x2="378" y2="167" stroke="#F7F0E3" stroke-width="1.3"/></svg>`,
+      'union-station': `<svg viewBox="525 333 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M550,393 C550,393 525,373 525,358 C525,344 536,333 550,333 C564,333 575,344 575,358 C575,373 550,393 550,393Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><polygon points="550,347 540,355 560,355" fill="none" stroke="#F7F0E3" stroke-width="1.5" stroke-linejoin="round"/><circle cx="550" cy="352" r="2" fill="none" stroke="#F7F0E3" stroke-width="1"/><line x1="540" y1="355" x2="540" y2="369" stroke="#F7F0E3" stroke-width="1.5"/><line x1="560" y1="355" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/><line x1="540" y1="369" x2="560" y2="369" stroke="#F7F0E3" stroke-width="1.5"/><path d="M546,369 Q550,363 554,369" fill="none" stroke="#F7F0E3" stroke-width="1.5"/></svg>`,
+      'pearson': `<svg viewBox="43 191 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M68,251 C68,251 43,231 43,216 C43,202 54,191 68,191 C82,191 93,202 93,216 C93,231 68,251 68,251Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><line x1="68" y1="204" x2="68" y2="224" stroke="#F7F0E3" stroke-width="2" stroke-linecap="round"/><path d="M68,210 L56,216 L58,217 L68,213" fill="#F7F0E3" opacity="0.8"/><path d="M68,210 L80,216 L78,217 L68,213" fill="#F7F0E3" opacity="0.8"/><path d="M68,220 L63,224 L64,223 L68,221" fill="#F7F0E3" opacity="0.8"/><path d="M68,220 L73,224 L72,223 L68,221" fill="#F7F0E3" opacity="0.8"/><circle cx="68" cy="206" r="2" fill="#F7F0E3" opacity="0.4"/></svg>`,
+      'scarborough-bluffs': `<svg viewBox="985 377 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M1010,437 C1010,437 985,417 985,402 C985,388 996,377 1010,377 C1024,377 1035,388 1035,402 C1035,417 1010,437 1010,437Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><polyline points="998,414 1004,398 1010,408 1016,392 1022,414" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/><line x1="998" y1="414" x2="1022" y2="414" stroke="#F7F0E3" stroke-width="1.8"/></svg>`,
+      'fort-york': `<svg viewBox="380 350 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M405,410 C405,410 380,390 380,375 C380,361 391,350 405,350 C419,350 430,361 430,375 C430,390 405,410 405,410Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="395" y="367" width="15" height="7" rx="2" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><line x1="410" y1="368" x2="416" y2="368" stroke="#F7F0E3" stroke-width="1.5"/><line x1="410" y1="373" x2="416" y2="373" stroke="#F7F0E3" stroke-width="1.5"/><circle cx="399" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/><circle cx="407" cy="377" r="2.5" fill="none" stroke="#F7F0E3" stroke-width="1.3"/></svg>`,
+      'railway-museum': `<svg viewBox="515 427 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M540,487 C540,487 515,467 515,452 C515,438 526,427 540,427 C554,427 565,438 565,452 C565,467 540,487 540,487Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><circle cx="540" cy="452" r="7" fill="none" stroke="#F7F0E3" stroke-width="1.4"/><circle cx="540" cy="452" r="1.8" fill="none" stroke="#F7F0E3" stroke-width="1"/><line x1="540" y1="445" x2="540" y2="459" stroke="#F7F0E3" stroke-width="0.9"/><line x1="533" y1="452" x2="547" y2="452" stroke="#F7F0E3" stroke-width="0.9"/><line x1="535" y1="447" x2="545" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/><line x1="545" y1="447" x2="535" y2="457" stroke="#F7F0E3" stroke-width="0.9" opacity="0.6"/><line x1="535" y1="461" x2="545" y2="461" stroke="#F7F0E3" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+      'love-park': `<svg viewBox="647 437 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M672,497 C672,497 647,477 647,462 C647,448 658,437 672,437 C686,437 697,448 697,462 C697,477 672,497 672,497Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M672,469 C672,469 664,464 665,458 C666,455 669,455 672,459 C675,455 678,455 679,458 C680,464 672,469 672,469Z" fill="none" stroke="#F7F0E3" stroke-width="1.4" stroke-linejoin="round"/><line x1="672" y1="469" x2="672" y2="472" stroke="#F7F0E3" stroke-width="1"/><path d="M669,472 Q672,470 675,472" fill="none" stroke="#F7F0E3" stroke-width="1"/></svg>`,
+      'elgin-winter-garden': `<svg viewBox="630 360 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M655,420 C655,420 630,400 630,385 C630,371 641,360 655,360 C669,360 680,371 680,385 C680,400 655,420 655,420Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M646,395 L646,381 Q646,374 655,374 Q664,374 664,381 L664,395" fill="none" stroke="#F7F0E3" stroke-width="1.8" stroke-linejoin="round"/><line x1="644" y1="395" x2="666" y2="395" stroke="#F7F0E3" stroke-width="1.8"/><path d="M649,395 L649,382 Q649,377 655,377 Q661,377 661,382 L661,395" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.4"/><path d="M646,381 Q644,386 646,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/><path d="M664,381 Q666,386 664,391" fill="none" stroke="#F7F0E3" stroke-width="1.2" opacity="0.5"/><circle cx="655" cy="386" r="2" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/></svg>`
+    };
+
+    Object.entries(placeCoords).forEach(([id, latlng]) => {
+      const d = places[id];
+      if (!d) return;
+      const svg = pinIcons[id] || '';
+      const icon = L.divIcon({
+        className: 'leaflet-custom-pin',
+        html: '<div class="map-pin">' + svg + '</div>',
+        iconSize: [40, 48],
+        iconAnchor: [20, 48],
+        popupAnchor: [0, -48]
+      });
+      const marker = L.marker(latlng, { icon, title: d.name + ' · ' + d.nameZh }).addTo(leafletMap);
+      marker.on('click', () => openPanel(id));
+      const el = marker.getElement() ? marker.getElement().querySelector('.map-pin') : null;
+      markerMap[id] = { marker, el };
+    });
+
+    const allLatLngs = Object.values(placeCoords);
+    leafletMap.fitBounds(allLatLngs, { padding: [40, 40] });
   </script>
 
 </body>
