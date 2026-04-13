@@ -588,7 +588,9 @@
       'elgin-winter-garden': [43.6531, -79.3790]
     };
 
-    const leafletMap = L.map('map', { scrollWheelZoom: false });
+    let leafletMap;
+    function initLeafletMap() {
+    leafletMap = L.map('map', { scrollWheelZoom: false });
     window.leafletMap = leafletMap;
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -638,6 +640,13 @@
 
     const allLatLngs = Object.values(placeCoords);
     leafletMap.fitBounds(allLatLngs, { padding: [40, 40] });
+    }
+
+    if (document.readyState === 'complete') {
+      initLeafletMap();
+    } else {
+      window.addEventListener('load', initLeafletMap);
+    }
   </script>
 
 </body>
