@@ -44,7 +44,7 @@
 
   <!-- ===== Gallery ===== -->
   <section class="gallery">
-    <h2 class="gallery-title">All Sixteen Places <span class="zh-title">十六个精彩景点</span></h2>
+    <h2 class="gallery-title">All Nineteen Places <span class="zh-title">十九个精彩景点</span></h2>
     <p class="gallery-sub">click any card to explore · 点击卡片查看详情</p>
     <div class="gallery-grid">
       <div class="g-card" data-place="toronto-islands">
@@ -86,7 +86,7 @@
       <div class="g-card" data-place="elgin-winter-garden">
         <span class="g-card-tag paid">~$20 · 须购票</span>
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M8,42 L8,16 Q8,6 24,6 Q40,6 40,16 L40,42" stroke="#C9A84C" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="6" y1="42" x2="42" y2="42" stroke="#C9A84C" stroke-width="2.5"/><path d="M14,42 L14,20 Q14,12 24,12 Q34,12 34,20 L34,42" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.4"/><path d="M8,16 Q11,26 8,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><path d="M40,16 Q37,26 40,34" stroke="#C9A84C" fill="none" stroke-width="1.5" opacity="0.5"/><circle cx="24" cy="26" r="4" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/></svg></div>
-        <h3>Elgin &amp; Winter Garden Theatres <span class="zh">双层历史剧院</span></h3>
+        <h3>Elgin &amp; Winter Garden Theatres <span class="zh">爱尔金和冬日花园剧院</span></h3>
         <p>2–3 hrs · World's last Edwardian double theatre<br>2–3小时 · 世界最后双层爱德华剧院</p>
       </div>
       <div class="g-card" data-place="ago">
@@ -557,7 +557,6 @@
     document.querySelectorAll('.g-card[data-place]').forEach(card => {
       card.addEventListener('click', () => {
         openPanel(card.getAttribute('data-place'));
-        document.querySelector('.map-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
 

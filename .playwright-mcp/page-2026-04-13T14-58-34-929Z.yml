@@ -1,0 +1,249 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - paragraph [ref=e3]: ~ An Illustrated Guide · 图解旅行指南 ~
+    - heading "Discover Toronto" [level=1] [ref=e4]:
+      - text: Discover
+      - emphasis [ref=e5]: Toronto
+    - paragraph [ref=e6]: 发现多伦多
+    - paragraph [ref=e7]: Nineteen wonderful places — waterfront parks, garden/zoo/farm, museums/gallery, towering bluffs, Gothic castle, grand railway station, iconic tower, historic theatre, luxury waterfront residence, and national historic sites
+    - paragraph [ref=e8]: 十九个精彩景点——湖滨公园、花园/动物园/农场、博物馆/美术馆、壮阔悬崖、哥特城堡、宏伟车站、国家电视塔、历史剧院、豪华湖滨公寓，以及国家历史遗址
+    - paragraph [ref=e9]: ↓ click any pin on the map · 点击地图上的图钉 ↓
+    - img [ref=e11]
+  - generic [ref=e15]:
+    - generic:
+      - generic:
+        - button "Concord Canada House · 协和加拿大公寓" [ref=e16] [cursor=pointer]:
+          - img [ref=e18]
+        - button "Toronto Islands · 多伦多群岛" [ref=e26] [cursor=pointer]:
+          - img [ref=e28]
+        - button "Allan Gardens · 艾伦花园" [ref=e32] [cursor=pointer]:
+          - img [ref=e34]
+        - button "Riverdale Farm · 河谷农场" [ref=e39] [cursor=pointer]:
+          - img [ref=e41]
+        - button "High Park Zoo · 高公园动物园" [ref=e47] [cursor=pointer]:
+          - img [ref=e49]
+        - button "Gardiner Museum · 加德纳陶瓷博物馆" [ref=e57] [cursor=pointer]:
+          - img [ref=e59]
+        - button "Royal Ontario Museum · 皇家安大略博物馆" [ref=e65] [cursor=pointer]:
+          - img [ref=e67]
+        - button "Art Gallery of Ontario · 安大略艺术画廊" [ref=e70] [cursor=pointer]:
+          - img [ref=e72]
+        - button "Aga Khan Museum · 阿迦汗博物馆" [ref=e79] [cursor=pointer]:
+          - img [ref=e81]
+        - button "CN Tower · 国家电视塔" [ref=e85] [cursor=pointer]:
+          - img [ref=e87]
+        - button "Lake Ontario Waterfront · 安大略湖滨区" [ref=e94] [cursor=pointer]:
+          - img [ref=e96]
+        - button "Casa Loma · 卡萨罗玛城堡" [ref=e102] [cursor=pointer]:
+          - img [ref=e104]
+        - button "Union Station · 联合车站" [ref=e111] [cursor=pointer]:
+          - img [ref=e113]
+        - button "Pearson International Airport · 皮尔逊国际机场" [ref=e118] [cursor=pointer]:
+          - img [ref=e120]
+        - button "Scarborough Bluffs · 斯卡伯勒悬崖" [ref=e127] [cursor=pointer]:
+          - img [ref=e129]
+        - button "Fort York National Historic Site · 约克要塞国家历史遗址" [ref=e132] [cursor=pointer]:
+          - img [ref=e134]
+        - button "Toronto Railway Museum · 多伦多铁路博物馆" [ref=e139] [cursor=pointer]:
+          - img [ref=e141]
+        - button "Love Park · 洛夫公园" [ref=e147] [cursor=pointer]:
+          - img [ref=e149]
+        - button "Elgin & Winter Garden Theatres · 爱尔金和冬日花园剧院" [ref=e153] [cursor=pointer]:
+          - img [ref=e155]
+    - generic:
+      - generic [ref=e162]:
+        - button "Zoom in" [ref=e163] [cursor=pointer]: +
+        - button "Zoom out" [ref=e164] [cursor=pointer]: −
+      - generic [ref=e165]:
+        - link "Leaflet" [ref=e166] [cursor=pointer]:
+          - /url: https://leafletjs.com
+          - img [ref=e167]
+          - text: Leaflet
+        - text: "| ©"
+        - link "OpenStreetMap" [ref=e171] [cursor=pointer]:
+          - /url: https://www.openstreetmap.org/copyright
+        - text: ©
+        - link "CARTO" [ref=e172] [cursor=pointer]:
+          - /url: https://carto.com/attributions
+  - complementary [ref=e173]:
+    - button "Close" [ref=e175] [cursor=pointer]: ×
+  - generic [ref=e177]:
+    - heading "All Nineteen Places 十六个精彩景点" [level=2] [ref=e178]:
+      - text: All Nineteen Places
+      - generic [ref=e179]: 十九个精彩景点
+    - paragraph [ref=e180]: click any card to explore · 点击卡片查看详情
+    - generic [ref=e181]:
+      - generic [ref=e182] [cursor=pointer]:
+        - generic [ref=e183]: ~$9 ferry · 轮渡
+        - img [ref=e185]
+        - heading "Toronto Islands 多伦多群岛" [level=3] [ref=e188]:
+          - text: Toronto Islands
+          - generic [ref=e189]: 多伦多群岛
+        - paragraph [ref=e190]:
+          - text: 6–8 hrs · Best in summer & fall
+          - text: 6–8小时 · 夏秋最佳
+      - generic [ref=e191] [cursor=pointer]:
+        - generic [ref=e192]: Free · 免费
+        - img [ref=e194]
+        - heading "Allan Gardens 艾伦花园" [level=3] [ref=e199]:
+          - text: Allan Gardens
+          - generic [ref=e200]: 艾伦花园
+        - paragraph [ref=e201]:
+          - text: 1–2 hrs · Open year-round
+          - text: 1–2小时 · 全年开放
+      - generic [ref=e202] [cursor=pointer]:
+        - generic [ref=e203]: Free · 免费
+        - img [ref=e205]
+        - heading "Riverdale Farm 河谷农场" [level=3] [ref=e212]:
+          - text: Riverdale Farm
+          - generic [ref=e213]: 河谷农场
+        - paragraph [ref=e214]:
+          - text: 1–2 hrs · Best in spring & summer
+          - text: 1–2小时 · 春夏最佳
+      - generic [ref=e215] [cursor=pointer]:
+        - generic [ref=e216]: Free · 免费
+        - img [ref=e218]
+        - heading "Scarborough Bluffs 斯卡伯勒悬崖" [level=3] [ref=e220]:
+          - text: Scarborough Bluffs
+          - generic [ref=e221]: 斯卡伯勒悬崖
+        - paragraph [ref=e222]:
+          - text: 2–4 hrs · Best in summer & fall
+          - text: 2–4小时 · 夏秋最佳
+      - generic [ref=e223] [cursor=pointer]:
+        - generic [ref=e224]: ~$26–30
+        - img [ref=e226]
+        - heading "Royal Ontario Museum 皇家安大略博物馆" [level=3] [ref=e228]:
+          - text: Royal Ontario Museum
+          - generic [ref=e229]: 皇家安大略博物馆
+        - paragraph [ref=e230]:
+          - text: 3–5 hrs · Wed eve free
+          - text: 3–5小时 · 周三晚免费
+      - generic [ref=e231] [cursor=pointer]:
+        - generic [ref=e232]: Free · 免费
+        - img [ref=e234]
+        - heading "Lake Ontario Waterfront 安大略湖滨区" [level=3] [ref=e240]:
+          - text: Lake Ontario Waterfront
+          - generic [ref=e241]: 安大略湖滨区
+        - paragraph [ref=e242]:
+          - text: 2–4 hrs · Stunning sunsets
+          - text: 2–4小时 · 日落绝景
+      - generic [ref=e243] [cursor=pointer]:
+        - generic [ref=e244]: ~$20 · 须购票
+        - img [ref=e246]
+        - heading "Elgin & Winter Garden Theatres 爱尔金和冬日花园剧院" [level=3] [ref=e252]:
+          - text: Elgin & Winter Garden Theatres
+          - generic [ref=e253]: 爱尔金和冬日花园剧院
+        - paragraph [ref=e254]:
+          - text: 2–3 hrs · World's last Edwardian double theatre
+          - text: 2–3小时 · 世界最后双层爱德华剧院
+      - generic [ref=e255] [cursor=pointer]:
+        - generic [ref=e256]: ~$28
+        - img [ref=e258]
+        - heading "Art Gallery of Ontario 安大略艺术画廊" [level=3] [ref=e265]:
+          - text: Art Gallery of Ontario
+          - generic [ref=e266]: 安大略艺术画廊
+        - paragraph [ref=e267]:
+          - text: 2–4 hrs · Wed eve free
+          - text: 2–4小时 · 周三晚免费
+      - generic [ref=e268] [cursor=pointer]:
+        - generic [ref=e269]: ~$15
+        - img [ref=e271]
+        - heading "Gardiner Museum 加德纳陶瓷博物馆" [level=3] [ref=e277]:
+          - text: Gardiner Museum
+          - generic [ref=e278]: 加德纳陶瓷博物馆
+        - paragraph [ref=e279]:
+          - text: 1–2 hrs · Wed eve free
+          - text: 1–2小时 · 周三晚免费
+      - generic [ref=e280] [cursor=pointer]:
+        - generic [ref=e281]: ~$20
+        - img [ref=e283]
+        - heading "Aga Khan Museum 阿迦汗博物馆" [level=3] [ref=e287]:
+          - text: Aga Khan Museum
+          - generic [ref=e288]: 阿迦汗博物馆
+        - paragraph [ref=e289]:
+          - text: 2–3 hrs · Wed eve free
+          - text: 2–3小时 · 周三晚免费
+      - generic [ref=e290] [cursor=pointer]:
+        - generic [ref=e291]: Free · 免费
+        - img [ref=e293]
+        - heading "High Park Zoo 高公园动物园" [level=3] [ref=e301]:
+          - text: High Park Zoo
+          - generic [ref=e302]: 高公园动物园
+        - paragraph [ref=e303]:
+          - text: 2–3 hrs · Best in spring, summer & fall
+          - text: 2–3小时 · 春夏秋最佳
+      - generic [ref=e304] [cursor=pointer]:
+        - generic [ref=e305]: Residence · 公寓
+        - img [ref=e307]
+        - heading "Concord Canada House 协和加拿大公寓" [level=3] [ref=e318]:
+          - text: Concord Canada House
+          - generic [ref=e319]: 协和加拿大公寓
+        - paragraph [ref=e320]:
+          - text: Pool · Sauna · Hot tub · Steam
+          - text: 泳池 · 桑拿 · 热水浴 · 蒸汽室
+      - generic [ref=e321] [cursor=pointer]:
+        - generic [ref=e322]: ~$43
+        - img [ref=e324]
+        - heading "CN Tower 国家电视塔" [level=3] [ref=e331]:
+          - text: CN Tower
+          - generic [ref=e332]: 国家电视塔
+        - paragraph [ref=e333]:
+          - text: 1–2 hrs · City landmark
+          - text: 1–2小时 · 城市地标
+      - generic [ref=e334] [cursor=pointer]:
+        - generic [ref=e335]: ~$30 · 须购票
+        - img [ref=e337]
+        - heading "Casa Loma 卡萨罗玛城堡" [level=3] [ref=e345]:
+          - text: Casa Loma
+          - generic [ref=e346]: 卡萨罗玛城堡
+        - paragraph [ref=e347]:
+          - text: 2–3 hrs · Midtown landmark
+          - text: 2–3小时 · 中城地标
+      - generic [ref=e348] [cursor=pointer]:
+        - generic [ref=e349]: Free · 免费
+        - img [ref=e351]
+        - heading "Union Station 联合车站" [level=3] [ref=e356]:
+          - text: Union Station
+          - generic [ref=e357]: 联合车站
+        - paragraph [ref=e358]:
+          - text: 30 min–1 hr · Transit hub
+          - text: 30分钟–1小时 · 交通枢纽
+      - generic [ref=e359] [cursor=pointer]:
+        - generic [ref=e360]: Gateway · 门户
+        - img [ref=e362]
+        - heading "Pearson Airport 皮尔逊机场" [level=3] [ref=e368]:
+          - text: Pearson Airport
+          - generic [ref=e369]: 皮尔逊机场
+        - paragraph [ref=e370]:
+          - text: Intl gateway · UP Express
+          - text: 国际门户 · UP快线直达
+      - generic [ref=e371] [cursor=pointer]:
+        - generic [ref=e372]: Free · 免费
+        - img [ref=e374]
+        - heading "Fort York 约克要塞" [level=3] [ref=e378]:
+          - text: Fort York
+          - generic [ref=e379]: 约克要塞
+        - paragraph [ref=e380]:
+          - text: 1–2 hrs · Birthplace of Toronto
+          - text: 1–2小时 · 多伦多发祥地
+      - generic [ref=e381] [cursor=pointer]:
+        - generic [ref=e382]: ~$14
+        - img [ref=e384]
+        - heading "Toronto Railway Museum 多伦多铁路博物馆" [level=3] [ref=e389]:
+          - text: Toronto Railway Museum
+          - generic [ref=e390]: 多伦多铁路博物馆
+        - paragraph [ref=e391]:
+          - text: 1–2 hrs · Steam locomotives & heritage cars
+          - text: 1–2小时 · 蒸汽机车与历史车厢
+      - generic [ref=e392] [cursor=pointer]:
+        - generic [ref=e393]: Free · 免费
+        - img [ref=e395]
+        - heading "Love Park 洛夫公园" [level=3] [ref=e398]:
+          - text: Love Park
+          - generic [ref=e399]: 洛夫公园
+        - paragraph [ref=e400]:
+          - text: 30 min–1 hr · Neighbourhood gem
+          - text: 30分钟–1小时 · 社区绿洲
+  - contentinfo [ref=e401]:
+    - img [ref=e402]
+    - paragraph [ref=e404]: Made with ♥ for Toronto explorers · 为多伦多旅行者用心制作
