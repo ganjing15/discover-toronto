@@ -44,7 +44,7 @@
 
   <!-- ===== Gallery ===== -->
   <section class="gallery">
-    <h2 class="gallery-title">All Thirty-One Places <span class="zh-title">三十一个精彩景点</span></h2>
+    <h2 class="gallery-title">All Thirty-Two Places <span class="zh-title">三十二个精彩景点</span></h2>
     <p class="gallery-sub">click any card to explore · 点击卡片查看详情</p>
     <div class="gallery-grid">
       <div class="g-card" data-place="toronto-islands">
@@ -232,6 +232,12 @@
         <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M24,8 L24,18" stroke="#4A7C59" fill="none" stroke-width="2"/><polygon points="24,18 18,28 30,28" stroke="#4A7C59" fill="none" stroke-width="2" stroke-linejoin="round"/><rect x="20" y="28" width="8" height="6" stroke="#4A7C59" fill="none" stroke-width="2"/><path d="M14,34 Q24,30 34,34" stroke="#4A7C59" fill="none" stroke-width="2"/><line x1="14" y1="34" x2="34" y2="34" stroke="#4A7C59" stroke-width="2"/><circle cx="14" cy="14" r="3" fill="none" stroke="#4A7C59" stroke-width="1.5" opacity="0.4"/><circle cx="34" cy="12" r="2.5" fill="none" stroke="#4A7C59" stroke-width="1.5" opacity="0.4"/><path d="M10,40 Q16,38 22,40 Q28,42 34,40" stroke="#4A7C59" fill="none" stroke-width="1.5" opacity="0.3"/></svg></div>
         <h3>St James Park <span class="zh">圣詹姆斯公园</span></h3>
         <p>30 min–1 hr · Victorian gazebo · cathedral gardens<br>30分钟–1小时 · 维多利亚凉亭 · 大教堂花园</p>
+      </div>
+      <div class="g-card" data-place="biidaasige-park">
+        <span class="g-card-tag">Free · 免费</span>
+        <div class="g-card-icon"><svg viewBox="0 0 48 48"><path d="M8,38 Q14,28 24,26 Q34,28 40,38" stroke="#3D7A9E" fill="none" stroke-width="2.5" stroke-linejoin="round"/><line x1="8" y1="38" x2="40" y2="38" stroke="#3D7A9E" stroke-width="2.5"/><path d="M16,32 Q20,24 24,22 Q28,24 32,32" stroke="#3D7A9E" fill="none" stroke-width="1.5" opacity="0.3"/><path d="M4,42 Q12,38 20,42 Q28,46 36,42 Q40,40 44,42" stroke="#3D7A9E" fill="none" stroke-width="2"/><circle cx="24" cy="12" r="5" stroke="#C9A84C" fill="none" stroke-width="2"/><line x1="24" y1="7" x2="24" y2="4" stroke="#C9A84C" stroke-width="1.5"/><line x1="19" y1="12" x2="17" y2="10" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/><line x1="29" y1="12" x2="31" y2="10" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/></svg></div>
+        <h3>Biidaasige Park <span class="zh">比达西格公园</span></h3>
+        <p>1–2 hrs · New waterfront park · Don River mouth<br>1–2小时 · 新滨水公园 · 唐河入湖口</p>
       </div>
     </div>
   </section>
@@ -724,6 +730,22 @@
         addressZh: '安大略省多伦多市国王东街120号',
         url: 'https://www.toronto.ca/explore-enjoy/parks-recreation/places-spaces/parks-and-recreation-facilities/location/?id=408',
         map: 'St+James+Park,Toronto,ON'
+      },
+      'biidaasige-park': {
+        name: 'Biidaasige Park',
+        nameZh: '比达西格公园',
+        desc: 'Toronto\'s newest major waterfront park, created as part of the landmark Don River naturalization and Port Lands flood-protection project. Located on the newly formed island of Ookwemin Minising, the park\'s name means "sunlight shining toward us" in Anishinaabemowin (Ojibwe). The expansive green space features wetland habitats, wildflower meadows, riverside trails along the re-routed Don River, a nature-inspired kids\' playground, Indigenous public art installations, and sweeping views of the downtown skyline across the water.',
+        descZh: '多伦多最新的大型滨水公园，作为唐河自然化与港口区防洪工程的一部分而建。位于新形成的奥克韦明米尼辛岛上，公园名称在安尼希纳比词（奥吉布韦语）中意为“阳光照射向我们”。广阔的绿地设有湿地栖息地、野花草地、沿改道唐河的河畔步道、自然主题儿童游乐场、原住民公共艺术装置，以及隔水眺望市中心天际线的开阔景观。',
+        bestTime: 'Spring through fall for trails & wildflowers; summer sunsets are spectacular',
+        bestTimeZh: '春至秋季适合步道散步与赏野花；夏季日落尤为壮观',
+        duration: '1–2 hours · 1至2小时',
+        price: 'Free admission · 免费入场',
+        priceZh: '免费入场',
+        free: true,
+        address: '51 Commissioners Street, Toronto, ON',
+        addressZh: '安大略省多伦多市委员街51号',
+        url: 'https://www.toronto.ca/explore-enjoy/parks-recreation/places-spaces/beaches-gardens-attractions/biidaasige-park/#header',
+        map: 'https://maps.app.goo.gl/sNc6Kk1oKf26sneH7'
       }
     };
 
@@ -859,7 +881,8 @@
       'arcadia-earth': [43.6429939, -79.3969763],
       'textile-museum': [43.6545057, -79.3867448],
       'bata-shoe-museum': [43.6672, -79.4001],
-      'st-james-park': [43.6513, -79.3739]
+      'st-james-park': [43.6513, -79.3739],
+      'biidaasige-park': [43.6498, -79.3535]
     };
 
     let leafletMap;
@@ -904,7 +927,8 @@
       'arcadia-earth': `<svg viewBox="600 50 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M625,110 C625,110 600,90 600,75 C600,61 611,50 625,50 C639,50 650,61 650,75 C650,90 625,110 625,110Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><circle cx="625" cy="76" r="8" fill="none" stroke="#F7F0E3" stroke-width="1.5"/><path d="M617,76 Q621,73 625,76 Q629,79 633,76" fill="none" stroke="#F7F0E3" stroke-width="1.1"/><path d="M625,68 Q622,72 625,76 Q628,80 625,84" fill="none" stroke="#F7F0E3" stroke-width="1.1"/><path d="M620,71 Q622,70 623,72 Q621,74 620,72Z" fill="#F7F0E3" opacity="0.8"/><path d="M628,79 Q630,78 631,80 Q629,82 628,80Z" fill="#F7F0E3" opacity="0.8"/></svg>`,
       'textile-museum': `<svg viewBox="490 170 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M515,230 C515,230 490,210 490,195 C490,181 501,170 515,170 C529,170 540,181 540,195 C540,210 515,230 515,230Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><rect x="506" y="187" width="18" height="16" fill="none" stroke="#F7F0E3" stroke-width="1.4"/><line x1="510" y1="187" x2="510" y2="203" stroke="#F7F0E3" stroke-width="0.8" opacity="0.6"/><line x1="514" y1="187" x2="514" y2="203" stroke="#F7F0E3" stroke-width="0.8" opacity="0.6"/><line x1="518" y1="187" x2="518" y2="203" stroke="#F7F0E3" stroke-width="0.8" opacity="0.6"/><line x1="522" y1="187" x2="522" y2="203" stroke="#F7F0E3" stroke-width="0.8" opacity="0.6"/><path d="M506,190 Q510,189 514,190 Q518,191 522,190 Q524,189.5 524,190" stroke="#F7F0E3" fill="none" stroke-width="1.1"/><path d="M506,194 Q510,195 514,194 Q518,193 522,194" stroke="#F7F0E3" fill="none" stroke-width="1.1"/><path d="M506,198 Q510,197 514,198 Q518,199 522,198" stroke="#F7F0E3" fill="none" stroke-width="1.1"/><path d="M506,201.5 Q510,202.5 514,201.5 Q518,200.5 522,201.5" stroke="#F7F0E3" fill="none" stroke-width="1.1"/></svg>`,
       'bata-shoe-museum': `<svg viewBox="460 220 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M485,280 C485,280 460,260 460,245 C460,231 471,220 485,220 C499,220 510,231 510,245 C510,260 485,280 485,280Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M474,248 Q474,244 479,243 L491,242 Q496,241 498,243 L499,246 Q500,248 498,249 L476,250 Q474,250 474,248Z" fill="none" stroke="#F7F0E3" stroke-width="1.4" stroke-linejoin="round"/><path d="M491,242 L491,238 Q492,236 494,237 L495,241" fill="none" stroke="#F7F0E3" stroke-width="1.2" stroke-linejoin="round"/><path d="M480,246 Q483,245 486,246" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/></svg>`,
-      'st-james-park': `<svg viewBox="650 300 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M675,360 C675,360 650,340 650,325 C650,311 661,300 675,300 C689,300 700,311 700,325 C700,340 675,360 675,360Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M675,313 L675,319" stroke="#F7F0E3" fill="none" stroke-width="1.3"/><polygon points="675,319 670,326 680,326" fill="none" stroke="#F7F0E3" stroke-width="1.3" stroke-linejoin="round"/><rect x="672" y="326" width="6" height="4" fill="none" stroke="#F7F0E3" stroke-width="1.2"/><path d="M668,330 Q675,327 682,330" fill="none" stroke="#F7F0E3" stroke-width="1.2"/><line x1="668" y1="330" x2="682" y2="330" stroke="#F7F0E3" stroke-width="1.2"/><circle cx="668" cy="318" r="2" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/><circle cx="682" cy="316" r="1.8" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/></svg>`
+      'st-james-park': `<svg viewBox="650 300 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M675,360 C675,360 650,340 650,325 C650,311 661,300 675,300 C689,300 700,311 700,325 C700,340 675,360 675,360Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M675,313 L675,319" stroke="#F7F0E3" fill="none" stroke-width="1.3"/><polygon points="675,319 670,326 680,326" fill="none" stroke="#F7F0E3" stroke-width="1.3" stroke-linejoin="round"/><rect x="672" y="326" width="6" height="4" fill="none" stroke="#F7F0E3" stroke-width="1.2"/><path d="M668,330 Q675,327 682,330" fill="none" stroke="#F7F0E3" stroke-width="1.2"/><line x1="668" y1="330" x2="682" y2="330" stroke="#F7F0E3" stroke-width="1.2"/><circle cx="668" cy="318" r="2" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/><circle cx="682" cy="316" r="1.8" fill="none" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/></svg>`,
+      'biidaasige-park': `<svg viewBox="750 350 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M775,410 C775,410 750,390 750,375 C750,361 761,350 775,350 C789,350 800,361 800,375 C800,390 775,410 775,410Z" fill="#C45D3E" stroke="#A3533B" stroke-width="1.5"/><path d="M764,380 Q770,374 775,372 Q780,374 786,380" fill="none" stroke="#F7F0E3" stroke-width="1.4" stroke-linejoin="round"/><line x1="764" y1="380" x2="786" y2="380" stroke="#F7F0E3" stroke-width="1.4"/><path d="M762,384 Q768,381 774,384 Q780,387 786,384" fill="none" stroke="#F7F0E3" stroke-width="1.3"/><circle cx="775" cy="366" r="3" fill="none" stroke="#F7F0E3" stroke-width="1.2"/><line x1="775" y1="363" x2="775" y2="361" stroke="#F7F0E3" stroke-width="1"/><line x1="772" y1="366" x2="770" y2="364" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/><line x1="778" y1="366" x2="780" y2="364" stroke="#F7F0E3" stroke-width="1" opacity="0.5"/></svg>`
     };
 
     Object.entries(placeCoords).forEach(([id, latlng]) => {
