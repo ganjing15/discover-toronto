@@ -1,3 +1,5 @@
 .firebase/
 *.bak
 .DS_Store
+.playwright-mcp/
+.claude/
